@@ -159,3 +159,17 @@ footer > input {
 #star-contain {
   margin-top: 3rem;
 }
+
+.all-star {
+  padding: 0.5rem;
+  filter: brightness(0);
+  cursor: pointer;
+}
+
+.feedback-starcolor {
+  filter: hue-rotate(120deg) brightness(1.5);
+}
+
+.filter-none {
+  filter: brightness(0);
+}
