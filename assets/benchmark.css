@@ -87,11 +87,11 @@ ul > li {
   font-weight: bolder;
   border: none;
 }
-.main-second-page h1 span {
+#main-second-page h1 span {
   display: block;
   font-weight: bolder;
 }
-.main-second-page {
+#main-second-page {
   width: 100%;
   text-align: center;
   margin: auto;
@@ -227,6 +227,7 @@ ul > li {
     counter-reset: s 0;
   }
 }
+
 svg {
   grid-column: 1;
   grid-row: 1;
