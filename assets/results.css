@@ -89,3 +89,10 @@ h1 {
   padding: 20px 60px;
   font-size: 15px;
 }
+.p2wrong,
+.p2correct {
+  color: #00ffff;
+  font-weight: bold;
+  margin-top: 0;
+  font-size: 16px;
+}
