@@ -2,57 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>benchmark</title>
+    <title>Result Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter&family=Outfit&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./assets/reset.css" />
     <link rel="stylesheet" href="./assets/results.css" />
   </head>
-
-  <body>
-    <header>
-      <img src="./assets/img/epicode_logo.png" alt="Logo-Epicode" id="logo" />
-    </header>
-
-    <div class="container-results1">
-      <main id="mainResults">
-        <div id="Header">
-          <h1 class="h1-results">Results</h1>
-          <p class="summary">The summary of answers:</p>
-        </div>
-
-        <div id="container-result2">
-          <div id="leftPosition">
-            <p class="p1">Correct</p>
-            <p id="positive-rate" class="rate"></p>
-            <div id="correctAnswerTot"></div>
-          </div>
-
-          <div id="centralPosition">
-            <div class="graphic">
-              <canvas id="ChartDescr"></canvas>
-              <p id="inside-canvas"></p>
-            </div>
-          </div>
-
-          <div id="rightPosition">
-            <p class="p1">Wrong</p>
-            <p id="negative-rate" class="rate"></p>
-            <div id="WrongAnswerTot"></div>
-          </div>
-        </div>
-      </main>
-
-      <footer>
-        <a href="./feedback.html" id="feed">RATE US</a>
-      </footer>
+  <div id="logo-container">
+    <img src="/assets/img/epicode_logo.png" alt="epicode logo" />
+  <body id="result-body">
+    <div class="result">
+      <h1>Results</h1>
+      <p>The summary of your answers:</p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-    <script src="./assets/js/results.js"></script>
+    <div class="percentage">
+      <span class="answers position_correct" id="correct">Correct</span>
+      <span class="answers position_correct" id="true_question">66.7%</span>
+      <span class="answers position_correct" id="quantity_true"
+        >4/6 questions</span>>
+      <div class="container">
+        <div class="value_container"></div>
+        <div id="text_result">text</div>
+      </div>
+      <span class="answers position_wrong" id="wrong">Wrong</span>
+      <span class="answers position_wrong" id="false_question">33.3%</span>
+      <span class="answers position_wrong" id="quantity_false"
+        >2/6 questions</span
+      >
+      <a href="./feedback.html"
+        ><input type="button" id="feedback-button" value="Rate Us"
+      /></a>
+    </div>
+    <script src="./results.js"></script>
+    
   </body>
 </html>

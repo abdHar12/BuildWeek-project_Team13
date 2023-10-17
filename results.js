@@ -1,69 +1,65 @@
-let url = window.location.search;
-const parametro = new URLSearchParams(url);
-const score = parametro.get("result");
+const answers = localStorage.getItem("score");
+console.log(answers);
+const correctAnswer = parseInt(answers);
+const wrongAnswer = 10 - parseInt(answers);
+const allQuestions = 10;
+const correctPercentage = document.getElementById("true_question");
+const wrongPercentage = document.getElementById("false_question");
+const numberOfCorrect = document.getElementById("quantity_true");
+const numberOfWrong = document.getElementById("quantity_false");
+const textResult = document.getElementById("text_result");
+let percForCorrect = 0;
+let percForWrong = 0;
+let progressBar = document.querySelector(".container");
 
-window.onload = function () {};
+const resultCalculation = function () {
+  percForCorrect = (100 * correctAnswer) / allQuestions;
+  percForWrong = (100 * wrongAnswer) / allQuestions;
 
-let positiveScore = score;
-let totalScore = 10;
+  const preciseCorrect = percForCorrect.toPrecision(3);
+  const preciseWrong = percForWrong.toPrecision(3);
 
-document.getElementById("correctAnswerTot").innerHTML = `<p>${positiveScore}/${totalScore} questions</p>`;
-let negativeScore = numeroTotale - positiveScore;
-document.getElementById("WrongAnswerTot").innerHTML = `<p>${negativeScore}/${totalScore} questions</p>`;
+  let progressValue = 0;
+  let progressEndValue = parseInt(percForWrong);
+  let speed = 5;
 
-let positivePercentage = (positiveScore / totalScore) * 100;
-document.getElementById("positive-rate").innerHTML = positivePercentage + "%";
+  let progress = setInterval(() => {
+    progressValue++;
+    progressBar.style.background = `conic-gradient(
+      purple ${progressValue * 3.6}deg,
+      aqua ${progressValue * 3.6}deg
+)`;
+    if (progressValue === progressEndValue) {
+      clearInterval(progress);
+    }
+  });
 
-let negativePercentage = 100 - positivePercentage;
-document.getElementById("negative-rate").innerHTML = negativePercentage + "%";
+  correctPercentage.innerText = preciseCorrect + "%";
+  wrongPercentage.innerText = preciseWrong + "%";
 
-window.onload = function () {};
+  numberOfCorrect.innerText = correctAnswer + "/10 questions";
+  numberOfWrong.innerText = wrongAnswer + "/10 questions";
 
-let data = {
-  labels: ["Correct", "Wrong"],
-  datasets: [
-    {
-      data: [negativePercentage, positivePercentage],
-      backgroundColor: ["#c2128d", "#00ffff"],
-      borderColor: ["#c2128d", "#00ffff"],
-      borderWidth: 1,
-    },
-  ],
+  if (parseInt(percForCorrect) >= 60) {
+    textResult.innerHTML = `<div id="text_result">
+    Congratulations!
+    <br />
+    <span id="different_color">You passed the exam.</span>
+    <br />
+    <span class="lower_text"
+      >We'll send you the certificate <br />
+      in few minutes.</span
+    >
+    <span class="lower_text"
+      >Check your email (including <br />
+      promotions / spam folder)</span
+    >
+  </div>`;
+  } else {
+    textResult.innerHTML = `<div id="text_result">Oh no, you failed this one</div>`;
+  }
 };
 
-let centralTxt = document.getElementById("chartDescr").getContext("2d");
-centralTxt.canvas.width = 350;
-centralTxt.canvas.height = 350;
-centralTxt.canvas.border = 1;
-
-var centralChart = new Chart(ctx, {
-  type: "doughnut",
-  data: data,
-  options: {
-    responsive: false,
-    cutoutPercentage: 72,
-    maintainAspectRatio: false,
-    tooltips: {
-      callbacks: {
-        label: function (tooltipItem, data) {
-          var dataset = data.datasets[tooltipItem.datasetIndex];
-          var index = tooltipItem.index;
-          return data.labels[index] + ": " + dataset.data[index] + "%";
-        },
-      },
-    },
-    legend: {
-      display: false,
-    },
-  },
-});
-window.onload = function () {};
-
-if (positiveScore > 5) {
-  document.getElementById("inside-canvas").innerHTML = `<div class="correct-wrong"> <p class="p1">Congratulations!</p>
-    <p class="p2correct">You passed the exam.</p>
-    <p class="p3">We'll send you the certificate in few minutes. <br> Check your email (including promotions / spam folder)</p> </div>`;
-} else {
-  document.getElementById("inside-canvas").innerHTML = `<div class="correct-wrong"> <p class="p1">We are sorry!</p>;
-      <p class="p2wrong">You didn't passed the exam.</p>`;
-}
+window.onload = function () {
+  resultCalculation();
+};
