@@ -1,0 +1,268 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+body {
+  background-image: url(../assets/img/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Inter", sans-serif;
+}
+
+header img {
+  width: 20%;
+  padding: 2.5rem;
+  margin-left: 5rem;
+  margin-top: 2rem;
+}
+.main-firstpage {
+  width: 80%;
+  text-align: left;
+  margin: auto;
+  color: white;
+  font-size: 2.5rem;
+  margin-top: 4rem;
+}
+.first-h1 {
+  font-family: "Outfit", sans-serif;
+  font-size: 5rem;
+}
+
+.main-firstpage h1 span {
+  display: block;
+  font-weight: bolder;
+}
+
+.instruction {
+  margin-top: 2rem;
+  color: #c2128d;
+  font-size: 2rem;
+}
+
+.first-p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.first-p > span {
+  display: block;
+}
+
+ul {
+  margin-top: 4rem;
+  font-size: 1.5rem;
+  margin-left: 2rem;
+}
+
+ul > li {
+  padding: 0.4rem;
+}
+
+.ul-span {
+  font-weight: 700;
+}
+.footer-firstpage {
+  width: 80%;
+  margin: auto;
+  margin-top: 4rem;
+}
+
+.footer-firstpage p {
+  display: inline;
+  margin-left: 1rem;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.footer-firstpage button {
+  margin-left: 10rem;
+  width: 12rem;
+  height: 3.5rem;
+  color: #0b113b;
+  background: #00ffff;
+  font-weight: bolder;
+  border: none;
+}
+.main-second-page h1 span {
+  display: block;
+  font-weight: bolder;
+}
+.main-second-page {
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  color: white;
+  font-size: 2.5rem;
+  margin-top: 4rem;
+}
+.answers {
+  width: 100%;
+  border-radius: 4rem;
+  height: 7rem;
+  border-width: 5px;
+  box-shadow: -2px 8px 5px white;
+  border-color: white;
+  font-size: 1.5rem;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.main-for-input {
+  padding: 2rem;
+}
+
+.contain-answers {
+  padding: 2rem;
+  width: 40%;
+  display: inline-block;
+}
+
+#h1-second-page {
+  margin-bottom: 7rem;
+  margin-top: 8rem;
+  font-size: 5rem;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+}
+
+#footer-second-page {
+  color: white;
+  text-align: center;
+  margin-top: 8rem;
+  font-size: 2rem;
+  font-family: "Outfit", sans-serif;
+}
+
+#footer-second-page span {
+  color: #c2128d;
+  font-size: 2rem;
+}
+
+.countdown {
+  display: grid;
+  width: 10em;
+  height: 10em;
+  position: fixed;
+  margin-right: 8rem;
+  top: 0;
+  right: 0;
+  margin-top: 2rem;
+}
+.countdown::after {
+  grid-column: 1;
+  grid-row: 1;
+  place-self: center;
+  font: 3em/2 ubuntu mono, consolas, monaco, monospace;
+  animation: num 20s steps(1) infinite;
+  content: counter(s, decimal-leading-zero);
+  color: white;
+}
+
+@keyframes num {
+  0% {
+    counter-reset: s 20;
+  }
+  5% {
+    counter-reset: s 19;
+  }
+  10% {
+    counter-reset: s 18;
+  }
+  15% {
+    counter-reset: s 17;
+  }
+  20% {
+    counter-reset: s 16;
+  }
+  25% {
+    counter-reset: s 15;
+  }
+  30% {
+    counter-reset: s 14;
+  }
+  35% {
+    counter-reset: s 13;
+  }
+  40% {
+    counter-reset: s 12;
+  }
+  45% {
+    counter-reset: s 11;
+  }
+  50% {
+    counter-reset: s 10;
+  }
+  55% {
+    counter-reset: s 9;
+  }
+  60% {
+    counter-reset: s 8;
+  }
+  65% {
+    counter-reset: s 7;
+  }
+  70% {
+    counter-reset: s 6;
+  }
+  75% {
+    counter-reset: s 5;
+  }
+  80% {
+    counter-reset: s 4;
+  }
+  85% {
+    counter-reset: s 3;
+  }
+  90% {
+    counter-reset: s 2;
+  }
+  95% {
+    counter-reset: s 1;
+  }
+  100% {
+    counter-reset: s 0;
+  }
+}
+svg {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+[r] {
+  fill: none;
+  stroke: silver;
+}
+[r] + [r] {
+  transform: rotate(-90deg);
+  stroke-linecap: round;
+  stroke: #8a9b0f;
+  animation: arc 20s linear infinite;
+  animation-name: arc, col;
+}
+
+@keyframes arc {
+  0% {
+    stroke-dashoffset: 0px;
+  }
+}
+@keyframes col {
+  0% {
+    stroke: #00ffff;
+  }
+  25% {
+    stroke: #00ffff;
+  }
+  50% {
+    stroke: #00ffff;
+  }
+  75% {
+    stroke: #bd1550;
+  }
+  100% {
+    stroke: #490a3d;
+  }
+}

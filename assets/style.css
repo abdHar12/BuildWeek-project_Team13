@@ -1,0 +1,161 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+body {
+  background-image: url(../assets/img/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header img {
+  width: 20%;
+  padding: 2.5rem;
+  margin-left: 5rem;
+}
+.main-firstpage {
+  width: 80%;
+  text-align: left;
+  margin: auto;
+  color: white;
+  font-size: 2.5rem;
+  margin-top: 4rem;
+}
+.first-h1 {
+  font-size: 5rem;
+  font-family: "Outfit", sans-serif;
+}
+
+.main-firstpage h1 span {
+  display: block;
+  font-weight: bolder;
+}
+
+.instruction {
+  margin-top: 2rem;
+  color: #c2128d;
+  font-size: 2rem;
+  font-family: "Inter", sans-serif;
+}
+
+.first-p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.first-p > span {
+  display: block;
+}
+
+ul {
+  margin-top: 4rem;
+  font-size: 1.5rem;
+  margin-left: 2rem;
+}
+
+ul > li {
+  padding: 0.4rem;
+}
+
+.ul-span {
+  font-weight: 700;
+}
+.footer-firstpage {
+  width: 80%;
+  margin: auto;
+  margin-top: 4rem;
+}
+
+.footer-firstpage p {
+  display: inline;
+  margin-left: 1rem;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.first-button {
+  margin-left: 10rem;
+  width: 13rem;
+  height: 3.5rem;
+  color: #0b113b;
+  background: #00ffff;
+  font-weight: bolder;
+  border: none;
+  font-size: 1.2rem;
+  box-shadow: 0 0 14px 3px rgba(207, 255, 253, 1);
+  cursor: pointer;
+}
+footer > input {
+  background-color: transparent;
+  border: none;
+}
+
+#main-lastpage {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
+#fourth-h1 {
+  font-size: 5rem;
+  font-weight: 800;
+  font-family: "Outfit", sans-serif;
+}
+
+#fourth-divh3 {
+  margin-top: 2rem;
+}
+
+#star-contain {
+  margin-top: 1.2rem;
+  margin-bottom: 8rem;
+}
+
+.fourth-h3 {
+  font-size: 2rem;
+}
+
+.fourth-footer {
+  text-align: center;
+  margin: auto;
+  margin-top: 4rem;
+}
+
+.fourth-button {
+  display: block;
+  width: 16rem;
+  height: 4rem;
+  color: #0b113b;
+  background: #00ffff;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  border: none;
+  color: #0b113b;
+  margin: auto;
+  margin-top: 4rem;
+  box-shadow: 0 0 14px 3px rgba(207, 255, 253, 1);
+  cursor: pointer;
+}
+
+.fourth-input {
+  width: 60%;
+  height: 3rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #c2128d;
+  font-size: 2rem;
+  color: white;
+}
+
+.checked {
+  color: #0b113b;
+}
+
+#star-contain {
+  margin-top: 3rem;
+}
