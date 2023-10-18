@@ -166,6 +166,28 @@ ul > li {
   filter: hue-rotate(120deg) brightness(1.5);
 }
 
+.lastpage-brenchmark-h1 {
+  width: 50%;
+  font-size: 30px;
+  margin-bottom: 4rem;
+}
+
+#button-last-page {
+  display: block;
+  width: 16rem;
+  height: 4rem;
+  color: #0b113b;
+  background: #00ffff;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  border: none;
+  color: #0b113b;
+  margin: auto;
+  margin-top: 4rem;
+  box-shadow: 0 0 14px 3px rgba(207, 255, 253, 1);
+  cursor: pointer;
+}
+
 .countdown {
   display: grid;
   width: 10em;

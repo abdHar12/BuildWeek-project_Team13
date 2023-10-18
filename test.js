@@ -152,23 +152,33 @@ function displayQuestion() {
   }
 }
 
-function selectOnlyOne() {
-  const answers = document.querySelectorAll(".answers");
-  const button = document.getElementById("button-confirm-question");
-  array = [];
-  array.length !== 1;
-  answers.forEach((e) => {
-    e.addEventListener("click", () => {
-      array.push(e);
-      button.disabled = false;
-    });
-  });
-}
-
 function showAlert() {
   alert("Questo è un messaggio di avviso!");
 }
 // Chiamata alla funzione per inizializzare il comportamento
-selectOnlyOne();
+function selectOnlyOne2() {
+  const answers = document.querySelectorAll(".answers");
+  const button = document.getElementById("button-confirm-question");
+  const arr = [];
+  answers.forEach((answer) => {
+    answer.addEventListener("click", () => {
+      arr.push(answer);
+      // Rimuovi la classe da tutti gli elementi
+      arr.forEach((input) => {
+        input.classList.remove("selected-answer-background");
+        button.disabled = arr.length !== 1;
+      });
 
-selectOnlyOne();
+      // Aggiungi la classe solo all'elemento selezionato
+      answer.classList.add("selected-answer-background");
+
+      // Controlla se c'è esattamente 1 input selezionato
+      const checkedAnswers = Array.prototype.filter.call(
+        answers,
+        (input) => input.checked
+      );
+    });
+  });
+}
+
+selectOnlyOne2();
