@@ -139,74 +139,89 @@ function displayQuestion() {
     quizCompleted();
   }
 }
-//------------------------------------------------------------
 
-const questionContainer = document.getElementById("question");
-const answerButtonsElement = document.getElementById("answer-container");
-const questionCounterElement = document.getElementById("q-num");
-const nextBtn = document.getElementById("next-btn");
-let shuffledQuestions, currentQuestionIndex;
-let correctAnswers = [];
-let wrongAnswers = [];
-let score = 0;
-
-nextBtn.addEventListener("click", () => {
-  currentQuestionIndex++;
-  setNextQ();
-});
-
-function start() {
-  questionCounterElement.textContent = 0;
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
-  currentQuestionIndex = 0;
-  setNextQ();
-}
-
-function setNextQ() {
-  resetState();
-  timer();
-  showQuestion(shuffledQuestions[currentQuestionIndex]);
-  const counter = parseInt(questionCounterElement.textContent, 0);
-  questionCounterElement.textContent = counter + 1;
-}
-
-function resetState() {
-  nextBtn.classList.add("hidden");
-  while (answerButtonsElement.firstChild) {
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-  }
-}
-
-function showQuestion(question) {
-  questionContainer.innerText = question.question;
-  question.answers.forEach((answer) => {
-    const button = document.createElement("button");
-    button.innerText = answer.text;
-    button.classList.add("answer-btn");
-    if (answer.correct) {
-      button.dataset.correct = answer.correct;
-    }
-    button.addEventListener("click", selectAnswer);
-    answerButtonsElement.appendChild(button);
-  });
-}
-
-function selectAnswer(e) {
-  const selectedButton = e.target;
-  const correct = selectedButton.dataset.correct;
-  processResults(correct);
-  if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    nextBtn.classList.remove("hidden");
-  } else {
-    const timer = document.getElementById("app");
-    timer.classList.add("hidden");
-    nextBtn.classList.remove("hidden");
-    nextBtn.innerText = "See Results";
-    nextBtn.addEventListener("click", () => {
-      window.location = "result.html";
+function selectOnlyOne() {
+  const answers = document.querySelectorAll(".answers");
+  const button2 = document.getElementById("button2-confirm-question");
+  array = [];
+  array.length !== 1;
+  answers.forEach((e) => {
+    e.addEventListener("click", () => {
+      array.push(e);
+      button2.disabled = false;
     });
-    score = score.toString();
-    console.log(score);
-    localStorage.setItem("score", score); //save score to localStorage so can be accessed by result.js
+  });
+
+  selectOnlyOne();
+  //------------------------------------------------------------
+
+  const questionContainer = document.getElementById("question");
+  const answerButtonsElement = document.getElementById("answer-container");
+  const questionCounterElement = document.getElementById("q-num");
+  const nextBtn = document.getElementById("next-btn");
+  let shuffledQuestions, currentQuestionIndex;
+  let correctAnswers = [];
+  let wrongAnswers = [];
+  let score = 0;
+
+  nextBtn.addEventListener("click", () => {
+    currentQuestionIndex++;
+    setNextQ();
+  });
+
+  function start() {
+    questionCounterElement.textContent = 0;
+    shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+    currentQuestionIndex = 0;
+    setNextQ();
+  }
+
+  function setNextQ() {
+    resetState();
+    timer();
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
+    const counter = parseInt(questionCounterElement.textContent, 0);
+    questionCounterElement.textContent = counter + 1;
+  }
+
+  function resetState() {
+    nextBtn.classList.add("hidden");
+    while (answerButtonsElement.firstChild) {
+      answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+    }
+  }
+
+  function showQuestion(question) {
+    questionContainer.innerText = question.question;
+    question.answers.forEach((answer) => {
+      const button2 = document.createElement("button2");
+      button2.innerText = answer.text;
+      button2.classList.add("answer-btn");
+      if (answer.correct) {
+        button2.dataset.correct = answer.correct;
+      }
+      button2.addEventListener("click", selectAnswer);
+      answerButtonsElement.appendChild(button2);
+    });
+  }
+
+  function selectAnswer(e) {
+    const selectedButton = e.target;
+    const correct = selectedButton.dataset.correct;
+    processResults(correct);
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+      nextBtn.classList.remove("hidden");
+    } else {
+      const timer = document.getElementById("app");
+      timer.classList.add("hidden");
+      nextBtn.classList.remove("hidden");
+      nextBtn.innerText = "See Results";
+      nextBtn.addEventListener("click", () => {
+        window.location = "result.html";
+      });
+      score = score.toString();
+      console.log(score);
+      localStorage.setItem("score", score); //save score to localStorage so can be accessed by result.js
+    }
   }
 }

@@ -85,13 +85,16 @@ let countCorrectAnswers = 0;
 let countWrongAnswers = 0;
 let IndexOfquestionsArray = 0;
 let timer;
+let controlOfTheAnswers = [];
 
-// function timeForAnswer() {
-//   let timeLeft = 20;
-//   timer = setTimeout(function () {
-//     CorrectOrWrongQuestion();
-//   }, timeLeft * 1000);
-// }
+function timeForAnswer() {
+  let timeLeft = 20;
+  timer = setTimeout(function () {
+    const selectedAnswer = document.querySelector(".selected-answer");
+    selectedAnswer.classList.remove("selected-answer");
+    gestionOfButton();
+  }, timeLeft * 1000);
+}
 
 // function nextQuestion() {
 //   if (IndexOfquestionsArray < questions.length - 1) {
@@ -103,37 +106,82 @@ let timer;
 // }
 // }
 
-// function CorrectOrWrongQuestion(userAnswer) {
-//   clearTimeout(timer);
-//   let currentQuestion = questions[IndexOfquestionsArray];
-//   if (userAnswer === currentQuestion.correct_answer) {
-//     countCorrectAnswers++;
-//   } else {
-//     countWrongAnswers++;
-//   }
-// }
-
-const gestionOfButton = () => {
-  IndexOfquestionsArray++;
-  const divForAnyanswer = document.querySelectorAll(".contain-answers");
-  Array.from(divForAnyanswer).forEach((div) => {
-    div.remove();
-  });
-  const h1ForQuestion = document.getElementById("h1-second-page");
-  h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
-  if (
-    questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "false" ||
-    questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
-  ) {
-    FourAnswers(IndexOfquestionsArray);
+function CorrectOrWrongQuestion(userAnswer, ind) {
+  clearTimeout(timer);
+  let currentQuestion = questions[ind];
+  if (userAnswer === currentQuestion.correct_answer) {
+    countCorrectAnswers++;
+    console.log("corrette: ", countCorrectAnswers);
+  } else {
+    countWrongAnswers++;
+    console.log("non corrette: ", countWrongAnswers);
   }
-};
+}
 
 const creationOfButton = () => {
   const button = document.getElementById("button-confirm-question");
   const mainOfPage = document.getElementById("main-second-page");
   mainOfPage.appendChild(button);
   button.addEventListener("click", gestionOfButton);
+};
+
+function selectOnlyOne() {
+  const answers = document.querySelectorAll(".answers");
+  const button = document.getElementById("button-confirm-question");
+  const arrayInputElements = [];
+  button.disabled = arrayInputElements.length !== 1;
+  // console.log(answers);
+  answers.forEach((ans) => {
+    ans.addEventListener("click", (e) => {
+      const selectedAnswers = document.querySelectorAll(".selected-answer");
+      Array.from(selectedAnswers).forEach((selAns) => {
+        selAns.checked = false;
+        selAns.classList.remove("selected-answer");
+      });
+      e.target.classList.add("selected-answer");
+      e.target.checked = true;
+      arrayInputElements.push(ans);
+      button.disabled = false;
+    });
+  });
+}
+
+const gestionOfButton = () => {
+  const selectedAnswer = document.querySelector(".selected-answer");
+
+  if (selectedAnswer) {
+    CorrectOrWrongQuestion(selectedAnswer.value, IndexOfquestionsArray);
+  }
+
+  // console.clear();
+  IndexOfquestionsArray++;
+  if (IndexOfquestionsArray >= 10) {
+    const divForAnyanswer = document.querySelectorAll(".contain-answers");
+    Array.from(divForAnyanswer).forEach((div) => {
+      div.remove();
+    });
+    lastPage();
+  } else {
+    const ptoRemove = document.querySelector("#footer-second-page > p");
+    ptoRemove.remove();
+    const footer = document.getElementById("footer-second-page");
+    const pOfFooter = document.createElement("p");
+    footer.appendChild(pOfFooter);
+    pOfFooter.innerText = "QUESTION " + (IndexOfquestionsArray + 1);
+    pOfFooter.insertAdjacentHTML("beforeend", "<span> / 10</span>");
+    const divForAnyanswer = document.querySelectorAll(".contain-answers");
+    Array.from(divForAnyanswer).forEach((div) => {
+      div.remove();
+    });
+    const h1ForQuestion = document.getElementById("h1-second-page");
+    h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
+    if (
+      questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "false" ||
+      questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
+    ) {
+      FourAnswers(IndexOfquestionsArray);
+    }
+  }
 };
 
 function FourRandomNumbers() {
@@ -147,16 +195,44 @@ function FourRandomNumbers() {
   }
   return randomNumbers;
 }
-// const trueFalseAnswers = (ind) => {}
+
+const lastPage = () => {
+  const h1ForQuestion = document.getElementById("h1-second-page");
+  h1ForQuestion.innerText = "COMPLIMENTI HAI TERMINATO IL TEST!";
+  const mainOfPage = document.getElementById("main-second-page");
+  const p = document.querySelector("#footer-second-page > p");
+  p.remove();
+  const previousButton = document.getElementById("button-confirm-question");
+  mainOfPage.removeChild(previousButton);
+  const button = document.createElement("button");
+  button.setAttribute("id", "button-last-page");
+  mainOfPage.appendChild(button);
+  button.innerHTML = "Vai ai risultati!";
+  button.addEventListener("click", function () {
+    countCorrectAnswers = countCorrectAnswers.toString();
+    console.log(countCorrectAnswers);
+    localStorage.setItem("countCorrectAnswers", countCorrectAnswers);
+    setTimeout(function () {
+      window.location.href = "./results.html";
+    }, 3000);
+  });
+};
+
+// const trueFalseAnswers = (ind) => {
+//   const arrayAnswers = questions[ind].incorrect_answers.concat(
+//     questions[ind].correct_answer
+//   );
+//   for (let i = 0; i < 2; i++) {}
+// };
 
 const FourAnswers = (ind) => {
   const arrayAnswers = questions[ind].incorrect_answers.concat(questions[ind].correct_answer);
-  console.log(arrayAnswers);
+  // console.log(arrayAnswers);
   const numbersInArray = FourRandomNumbers();
   for (let i = 0; i < 4; i++) {
     const divForAnyanswer = document.createElement("div");
     const mainOfPage = document.getElementById("main-second-page");
-    console.log(divForAnyanswer);
+    // console.log(divForAnyanswer);
     mainOfPage.appendChild(divForAnyanswer);
     divForAnyanswer.classList.add("contain-answers");
     const mainOfpage = document.getElementById("main-second-page");
@@ -166,14 +242,14 @@ const FourAnswers = (ind) => {
     inputButtonForAnyAnswer.type = "button";
     divForAnyanswer.appendChild(inputButtonForAnyAnswer);
     inputButtonForAnyAnswer.value = arrayAnswers[numbersInArray[i]];
+    // console.dir(inputButtonForAnyAnswer);
     inputButtonForAnyAnswer.addEventListener("click", (e) => {
-      if (e.target.value === questions[ind].correct_answer)
-        countCorrectAnswers++;
-      else countWrongAnswers++;
+      // e.target.classList.add("selected-answer");
     });
   }
   creationOfButton();
-  console.log(IndexOfquestionsArray);
+  selectOnlyOne();
+  // console.log(IndexOfquestionsArray);
 };
 
 window.onload = function () {
@@ -190,7 +266,8 @@ window.onload = function () {
   // Quando l'utente seleziona una risposta, passa alla domanda successiva dell'array e sostituisci quella precedentemente visualizzata con quella corrente,
   // salvando le risposte dell'utente in una variabile
   //   timeForAnswer();
-  console.log("atTheStart", IndexOfquestionsArray);
+
+  // console.log("atTheStart", IndexOfquestionsArray);
 
   const h1ForQuestion = document.getElementById("h1-second-page");
   h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
@@ -200,8 +277,9 @@ window.onload = function () {
   ) {
     FourAnswers(IndexOfquestionsArray);
   } else {
-    trueFalseAnswers(IndexOfquestionsArray);
+    // trueFalseAnswers(IndexOfquestionsArray);
   }
+  selectOnlyOne();
   creationOfButton();
 };
 
