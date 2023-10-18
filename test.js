@@ -151,24 +151,7 @@ function selectOnlyOne() {
       button2.disabled = false;
     });
   });
-}
 
-function showAlert() {
-  alert("Questo è un messaggio di avviso!");
-}
-// Chiamata alla funzione per inizializzare il comportamento
-function selectOnlyOne2() {
-  const answers = document.querySelectorAll(".answers");
-  const button = document.getElementById("button-confirm-question");
-  const arr = [];
-  answers.forEach((answer) => {
-    answer.addEventListener("click", () => {
-      arr.push(answer);
-      // Rimuovi la classe da tutti gli elementi
-      arr.forEach((input) => {
-        input.classList.remove("selected-answer-background");
-        button.disabled = arr.length !== 1;
-      });
 
 selectOnlyOne();
 //------------------------------------------------------------
@@ -243,10 +226,4 @@ function selectAnswer(e) {
   }
 }
 
-function processResults(isCorrect) {
-  if (!isCorrect) {
-    return;
-  }
-  score++;
-  console.log(score);
-}
+
