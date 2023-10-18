@@ -8,19 +8,19 @@ const wrongPercentage = document.getElementById("false_question");
 const numberOfCorrect = document.getElementById("quantity_true");
 const numberOfWrong = document.getElementById("quantity_false");
 const textResult = document.getElementById("text_result");
-let percForCorrect = 0;
-let percForWrong = 0;
+let percentageCorr = 0;
+let percentageWron = 0;
 let progressBar = document.querySelector(".container");
 
 const resultCalculation = function () {
-  percForCorrect = (100 * correctAnswer) / allQuestions;
-  percForWrong = (100 * wrongAnswer) / allQuestions;
+  percentageCorr = (100 * correctAnswer) / allQuestions;
+  percentageWron = (100 * wrongAnswer) / allQuestions;
 
-  const preciseCorrect = percForCorrect.toPrecision(3);
-  const preciseWrong = percForWrong.toPrecision(3);
+  const preciseCorrect = percentageCorr.toPrecision(3);
+  const preciseWrong = percentageWron.toPrecision(3);
 
   let progressValue = 0;
-  let progressEndValue = parseInt(percForWrong);
+  let progressEndValue = parseInt(percentageWron);
   let speed = 5;
 
   let progress = setInterval(() => {
@@ -40,7 +40,7 @@ const resultCalculation = function () {
   numberOfCorrect.innerText = correctAnswer + "/10 questions";
   numberOfWrong.innerText = wrongAnswer + "/10 questions";
 
-  if (parseInt(percForCorrect) >= 60) {
+  if (parseInt(percentageCorr) >= 60) {
     textResult.innerHTML = `<div id="text_result">
     Congratulations!
     <br />
