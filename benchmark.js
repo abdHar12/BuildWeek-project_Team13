@@ -169,17 +169,17 @@ const FourAnswers = (ind) => {
     const mainOfpage = document.getElementById("main-second-page");
     mainOfpage.appendChild(divForAnyanswer);
     const inputButtonForAnyAnswer = document.createElement("input");
-    divForAnyanswer.classList.add("answers");
+    inputButtonForAnyAnswer.classList.add("answers");
     inputButtonForAnyAnswer.type = "button";
     divForAnyanswer.appendChild(inputButtonForAnyAnswer);
     inputButtonForAnyAnswer.value = arrayAnswers[numbersInArray[i]];
-
     inputButtonForAnyAnswer.addEventListener("click", (e) => {
       if (e.target.value === questions[ind].correct_answer)
         countCorrectAnswers++;
       else countWrongAnswers++;
     });
   }
+
   console.log(IndexOfquestionsArray);
 };
 
