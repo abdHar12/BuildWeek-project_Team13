@@ -163,7 +163,7 @@ ul > li {
 }
 
 .selected-answer {
-  filter: hue-rotate(120deg) brightness(1.5);
+  background-color: #c2128d;
 }
 
 .lastpage-brenchmark-h1 {
