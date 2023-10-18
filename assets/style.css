@@ -140,6 +140,7 @@ footer > input {
   margin-top: 4rem;
   box-shadow: 0 0 14px 3px rgba(207, 255, 253, 1);
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .fourth-input {
