@@ -172,6 +172,10 @@ const gestionOfButton = () => {
     Array.from(divForAnyanswer).forEach((div) => {
       div.remove();
     });
+    const previousDivs = document.getElementsByClassName(
+      "contain-answers-true-false"
+    );
+    Array.from(previousDivs).forEach((div) => div.remove());
     lastPage();
   } else {
     const ptoRemove = document.querySelector("#footer-second-page > p");
@@ -185,11 +189,15 @@ const gestionOfButton = () => {
     Array.from(divForAnyanswer).forEach((div) => {
       div.remove();
     });
+    const previousDivs = document.getElementsByClassName(
+      "contain-answers-true-false"
+    );
+    Array.from(previousDivs).forEach((div) => div.remove());
     const h1ForQuestion = document.getElementById("h1-second-page");
     h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
     if (
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !==
-        "false" ||
+        "false" &&
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
     ) {
       FourAnswers(IndexOfquestionsArray);
@@ -229,16 +237,24 @@ const lastPage = () => {
 };
 
 const trueFalseAnswers = () => {
+  const previousDivs = document.getElementsByClassName(
+    "contain-answers-true-false"
+  );
+  Array.from(previousDivs).forEach((div) => div.remove());
+  const mainOfPage = document.getElementById("main-second-page");
+  const divAnswers = document.createElement("div");
+  mainOfPage.appendChild(divAnswers);
+  divAnswers.classList.add("div-true-false");
   for (let i = 0; i < 2; i++) {
+    const divForAnyAnswers = document.createElement("div");
+    divAnswers.appendChild(divForAnyAnswers);
+    divForAnyAnswers.classList.add("contain-answers-true-false");
     const radioInput = document.createElement("input");
-    const divForAnyanswer = document.createElement("div");
-    const mainOfPage = document.getElementById("main-second-page");
     const label = document.createElement("label");
     radioInput.type = "radio";
     radioInput.classList.add("true-false-input");
-    mainOfPage.appendChild(divForAnyanswer);
-    divForAnyanswer.appendChild(radioInput);
-    divForAnyanswer.appendChild(label);
+    divForAnyAnswers.appendChild(radioInput);
+    divForAnyAnswers.appendChild(label);
   }
   const bothRadioInput = document.getElementsByClassName("true-false-input");
   bothRadioInput[0].setAttribute("id", "true-input");
@@ -246,10 +262,14 @@ const trueFalseAnswers = () => {
   bothRadioInput[0].value = "true";
   bothRadioInput[1].value = "false";
   const bothLabel = document.getElementsByTagName("label");
-  bothLabel[0].htmlFor("true-input");
-  bothLabel[1].htmlFor("false-input");
+  Array.from(bothLabel).forEach((label) =>
+    label.classList.add("label-true-false")
+  );
+  bothLabel[0].setAttribute("for", "true-input");
+  bothLabel[1].setAttribute("for", "false-input");
   bothLabel[0].innerText = "True";
   bothLabel[1].innerText = "False";
+  creationOfButton();
 };
 
 const FourAnswers = (ind) => {
