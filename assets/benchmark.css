@@ -162,6 +162,10 @@ ul > li {
   margin-bottom: 4rem;
 }
 
+.selected-answer {
+  filter: hue-rotate(120deg) brightness(1.5);
+}
+
 .countdown {
   display: grid;
   width: 10em;

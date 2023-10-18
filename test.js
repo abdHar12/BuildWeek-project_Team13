@@ -151,3 +151,24 @@ function displayQuestion() {
     quizCompleted();
   }
 }
+
+function selectOnlyOne() {
+  const answers = document.querySelectorAll(".answers");
+  const button = document.getElementById("button-confirm-question");
+  array = [];
+  array.length !== 1;
+  answers.forEach((e) => {
+    e.addEventListener("click", () => {
+      array.push(e);
+      button.disabled = false;
+    });
+  });
+}
+
+function showAlert() {
+  alert("Questo è un messaggio di avviso!");
+}
+// Chiamata alla funzione per inizializzare il comportamento
+selectOnlyOne();
+
+selectOnlyOne();
