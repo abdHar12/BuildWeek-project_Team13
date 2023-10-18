@@ -207,6 +207,7 @@ window.onload = function () {
   console.log("atTheStart", IndexOfquestionsArray);
 
   const h1ForQuestion = document.getElementById("h1-second-page");
+  h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
   if (
     questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "false" ||
     questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
