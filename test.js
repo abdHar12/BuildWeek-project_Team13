@@ -210,11 +210,3 @@ function selectAnswer(e) {
     localStorage.setItem("score", score); //save score to localStorage so can be accessed by result.js
   }
 }
-
-function processResults(isCorrect) {
-  if (!isCorrect) {
-    return;
-  }
-  score++;
-  console.log(score);
-}
