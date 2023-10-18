@@ -163,19 +163,28 @@ const gestionOfButton = () => {
   // else countWrongAnswers++;
   // const allInputs = document.getElementsByClassName(answers);
   // let pressed = [];
-  // Array.from(allInputs).forEach((input) => {});
+
   IndexOfquestionsArray++;
-  const divForAnyanswer = document.querySelectorAll(".contain-answers");
-  Array.from(divForAnyanswer).forEach((div) => {
-    div.remove();
-  });
-  const h1ForQuestion = document.getElementById("h1-second-page");
-  h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
-  if (
-    questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "false" ||
-    questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
-  ) {
-    FourAnswers(IndexOfquestionsArray);
+  if (IndexOfquestionsArray >= 9) {
+    const divForAnyanswer = document.querySelectorAll(".contain-answers");
+    Array.from(divForAnyanswer).forEach((div) => {
+      div.remove();
+    });
+    lastPage();
+  } else {
+    const divForAnyanswer = document.querySelectorAll(".contain-answers");
+    Array.from(divForAnyanswer).forEach((div) => {
+      div.remove();
+    });
+    const h1ForQuestion = document.getElementById("h1-second-page");
+    h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
+    if (
+      questions[IndexOfquestionsArray].correct_answer.toLowerCase() !==
+        "false" ||
+      questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
+    ) {
+      FourAnswers(IndexOfquestionsArray);
+    }
   }
 };
 
@@ -198,7 +207,7 @@ const lastPage = () => {
   const mainOfPage = document.getElementById("main-second-page");
   mainOfPage.appendChild(button);
   button.setAttribute("id", "button-last-page");
-  button.innerText = "Vai ai risultati!";
+  button.innerHTML = "Vai ai risultati!";
 };
 
 // const trueFalseAnswers = (ind) => {
@@ -261,8 +270,6 @@ window.onload = function () {
     questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
   ) {
     FourAnswers(IndexOfquestionsArray);
-  } else if (IndexOfquestionsArray >= 9) {
-    lastPage();
   } else {
     // trueFalseAnswers(IndexOfquestionsArray);
   }

@@ -127,6 +127,8 @@ ul > li {
   font-size: 5rem;
   cursor: pointer;
   font-family: "Outfit", sans-serif;
+  font-size: 2rem;
+  margin-bottom: 4rem;
 }
 
 #footer-second-page {
@@ -155,11 +157,6 @@ ul > li {
   margin: auto;
   border-radius: 4rem;
   margin-top: 4rem;
-}
-
-#h1-second-page {
-  font-size: 2rem;
-  margin-bottom: 4rem;
 }
 
 .selected-answer {
