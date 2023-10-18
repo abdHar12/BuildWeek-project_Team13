@@ -137,11 +137,23 @@ function selectOnlyOne() {
   const answers = document.querySelectorAll(".answers");
   const button = document.getElementById("button-confirm-question");
   const arrayInputElements = [];
+
   button.disabled = arrayInputElements.length !== 1;
+  // console.log(answers);
   answers.forEach((ans) => {
-    ans.addEventListener("click", () => {
+    ans.addEventListener("click", (e) => {
+      const selectedAnswers = document.querySelectorAll(".selected-answer");
+
+      Array.from(selectedAnswers).forEach((selAns) => {
+        selAns.checked = false;
+        selAns.classList.remove("selected-answer");
+      });
+      e.target.classList.add("selected-answer");
+      e.target.checked = true;
       arrayInputElements.push(ans);
       button.disabled = false;
+      console.clear();
+      answers.forEach((a) => console.log(a.checked));
     });
   });
 }
@@ -179,9 +191,15 @@ function FourRandomNumbers() {
   return randomNumbers;
 }
 
-// const controlOfAnswer = () => {
-
-// };
+const lastPage = () => {
+  const h1ForQuestion = document.getElementById("h1-second-page");
+  h1ForQuestion.innerText = "COMPLIMENTI HAI TERMINATO IL TEST!";
+  const button = document.getElementById("button-confirm-question");
+  const mainOfPage = document.getElementById("main-second-page");
+  mainOfPage.appendChild(button);
+  button.setAttribute("id", "button-last-page");
+  button.innerText = "Vai ai risultati!";
+};
 
 // const trueFalseAnswers = (ind) => {
 //   const arrayAnswers = questions[ind].incorrect_answers.concat(
@@ -210,7 +228,9 @@ const FourAnswers = (ind) => {
     divForAnyanswer.appendChild(inputButtonForAnyAnswer);
     inputButtonForAnyAnswer.value = arrayAnswers[numbersInArray[i]];
     console.dir(inputButtonForAnyAnswer);
-    inputButtonForAnyAnswer.addEventListener("click", (e) => {});
+    inputButtonForAnyAnswer.addEventListener("click", (e) => {
+      // e.target.classList.add("selected-answer");
+    });
   }
   creationOfButton();
   selectOnlyOne();
@@ -241,6 +261,8 @@ window.onload = function () {
     questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
   ) {
     FourAnswers(IndexOfquestionsArray);
+  } else if (IndexOfquestionsArray >= 9) {
+    lastPage();
   } else {
     // trueFalseAnswers(IndexOfquestionsArray);
   }
