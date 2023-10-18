@@ -141,6 +141,13 @@ const gestionOfButton = () => {
   }
 };
 
+const creationOfButton = () => {
+  const button = document.getElementById("button-confirm-question");
+  const mainOfPage = document.getElementById("main-second-page");
+  mainOfPage.appendChild(button);
+  button.addEventListener("click", gestionOfButton);
+};
+
 function FourRandomNumbers() {
   const randomNumbers = [];
   // console.log(randomNumbers.length);
@@ -152,12 +159,12 @@ function FourRandomNumbers() {
   }
   return randomNumbers;
 }
+// const trueFalseAnswers = (ind) => {}
 
 const FourAnswers = (ind) => {
   const arrayAnswers = questions[ind].incorrect_answers.concat(
     questions[ind].correct_answer
   );
-
   console.log(arrayAnswers);
   const numbersInArray = FourRandomNumbers();
   for (let i = 0; i < 4; i++) {
@@ -179,7 +186,7 @@ const FourAnswers = (ind) => {
       else countWrongAnswers++;
     });
   }
-
+  creationOfButton();
   console.log(IndexOfquestionsArray);
 };
 
@@ -200,18 +207,15 @@ window.onload = function () {
   console.log("atTheStart", IndexOfquestionsArray);
 
   const h1ForQuestion = document.getElementById("h1-second-page");
-  h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
   if (
     questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "false" ||
     questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
   ) {
     FourAnswers(IndexOfquestionsArray);
-
-    const button = document.getElementById("button-confirm-question");
-    const mainOfPage = document.getElementById("main-second-page");
-    mainOfPage.appendChild(button);
-    button.addEventListener("click", gestionOfButton);
+  } else {
+    trueFalseAnswers(IndexOfquestionsArray);
   }
+  creationOfButton();
 };
 
 // Come calcolare il risultato? Hai due strade:
