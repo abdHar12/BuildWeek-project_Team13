@@ -152,11 +152,14 @@ ul > li {
   box-shadow: 0 0 14px 3px rgba(207, 255, 253, 1);
   cursor: pointer;
   display: block;
+  margin: auto;
+  border-radius: 4rem;
   margin-top: 4rem;
 }
 
 #h1-second-page {
-  font-size: 3rem;
+  font-size: 2rem;
+  margin-bottom: 4rem;
 }
 
 .countdown {
