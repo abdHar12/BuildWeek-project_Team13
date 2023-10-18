@@ -97,6 +97,7 @@ let countCorrectAnswers = 0;
 let countWrongAnswers = 0;
 let IndexOfquestionsArray = 0;
 let timer;
+let controlOfTheAnswers = [];
 
 // function timeForAnswer() {
 //   let timeLeft = 20;
@@ -125,7 +126,32 @@ let timer;
 //   }
 // }
 
+const creationOfButton = () => {
+  const button = document.getElementById("button-confirm-question");
+  const mainOfPage = document.getElementById("main-second-page");
+  mainOfPage.appendChild(button);
+  button.addEventListener("click", gestionOfButton);
+};
+
+function selectOnlyOne() {
+  const answers = document.querySelectorAll(".answers");
+  const button = document.getElementById("button-confirm-question");
+  const arrayInputElements = [];
+  button.disabled = arrayInputElements.length !== 1;
+  answers.forEach((ans) => {
+    ans.addEventListener("click", () => {
+      arrayInputElements.push(ans);
+      button.disabled = false;
+    });
+  });
+}
+
 const gestionOfButton = () => {
+  // if (e.target.value === questions[ind].correct_answer) countCorrectAnswers++;
+  // else countWrongAnswers++;
+  // const allInputs = document.getElementsByClassName(answers);
+  // let pressed = [];
+  // Array.from(allInputs).forEach((input) => {});
   IndexOfquestionsArray++;
   const divForAnyanswer = document.querySelectorAll(".contain-answers");
   Array.from(divForAnyanswer).forEach((div) => {
@@ -141,13 +167,6 @@ const gestionOfButton = () => {
   }
 };
 
-const creationOfButton = () => {
-  const button = document.getElementById("button-confirm-question");
-  const mainOfPage = document.getElementById("main-second-page");
-  mainOfPage.appendChild(button);
-  button.addEventListener("click", gestionOfButton);
-};
-
 function FourRandomNumbers() {
   const randomNumbers = [];
   // console.log(randomNumbers.length);
@@ -159,7 +178,17 @@ function FourRandomNumbers() {
   }
   return randomNumbers;
 }
-// const trueFalseAnswers = (ind) => {}
+
+// const controlOfAnswer = () => {
+
+// };
+
+// const trueFalseAnswers = (ind) => {
+//   const arrayAnswers = questions[ind].incorrect_answers.concat(
+//     questions[ind].correct_answer
+//   );
+//   for (let i = 0; i < 2; i++) {}
+// };
 
 const FourAnswers = (ind) => {
   const arrayAnswers = questions[ind].incorrect_answers.concat(
@@ -180,13 +209,11 @@ const FourAnswers = (ind) => {
     inputButtonForAnyAnswer.type = "button";
     divForAnyanswer.appendChild(inputButtonForAnyAnswer);
     inputButtonForAnyAnswer.value = arrayAnswers[numbersInArray[i]];
-    inputButtonForAnyAnswer.addEventListener("click", (e) => {
-      if (e.target.value === questions[ind].correct_answer)
-        countCorrectAnswers++;
-      else countWrongAnswers++;
-    });
+    console.dir(inputButtonForAnyAnswer);
+    inputButtonForAnyAnswer.addEventListener("click", (e) => {});
   }
   creationOfButton();
+  selectOnlyOne();
   console.log(IndexOfquestionsArray);
 };
 
@@ -204,6 +231,7 @@ window.onload = function () {
   // Quando l'utente seleziona una risposta, passa alla domanda successiva dell'array e sostituisci quella precedentemente visualizzata con quella corrente,
   // salvando le risposte dell'utente in una variabile
   //   timeForAnswer();
+
   console.log("atTheStart", IndexOfquestionsArray);
 
   const h1ForQuestion = document.getElementById("h1-second-page");
@@ -214,9 +242,10 @@ window.onload = function () {
   ) {
     FourAnswers(IndexOfquestionsArray);
   } else {
-    trueFalseAnswers(IndexOfquestionsArray);
+    // trueFalseAnswers(IndexOfquestionsArray);
   }
   creationOfButton();
+  selectOnlyOne();
 };
 
 // Come calcolare il risultato? Hai due strade:
