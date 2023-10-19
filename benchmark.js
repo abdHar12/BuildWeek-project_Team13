@@ -111,8 +111,10 @@ function timeForAnswer() {
 
 function CorrectOrWrongQuestion(userAnswer, ind) {
   clearTimeout(timer);
-  let currentQuestion = questions[ind];
-  if (userAnswer.toLowerCase === currentQuestion.correct_answer.toLowerCase) {
+
+  if (
+    userAnswer.toLowerCase() === questions[ind].correct_answer.toLowerCase()
+  ) {
     countCorrectAnswers++;
     console.log("corrette: ", countCorrectAnswers);
   } else {
