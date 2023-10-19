@@ -108,16 +108,6 @@ function timeForAnswer() {
   }, timeLeft * 1000);
 }
 
-// function nextQuestion() {
-//   if (IndexOfquestionsArray < questions.length - 1) {
-//     IndexOfquestionsArray++;
-//     FourAnswers();
-//   }
-// } else {
-//   quizCompleted();
-// }
-// }
-
 function CorrectOrWrongQuestion(userAnswer, ind) {
   let currentQuestion = questions[ind];
   if (userAnswer === currentQuestion.correct_answer) {
