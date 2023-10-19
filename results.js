@@ -1,6 +1,7 @@
-const query1 = new URLSearchParams(window.location.search);
-const answers = query1.get("countCorrectAnswers");
-const wrongAnswer = 10 - parseInt(answers);
+countCorrectAnswers = parseInt(localStorage.getItem("countCorrectAnswers"));
+const correctAnswer = parseInt(countCorrectAnswers);
+console.log(correctAnswer);
+const wrongAnswer = 10 - parseInt(countCorrectAnswers);
 const allQuestions = 10;
 const correctPercentage = document.getElementById("true_question");
 const wrongPercentage = document.getElementById("false_question");

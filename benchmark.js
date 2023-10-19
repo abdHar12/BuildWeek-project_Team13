@@ -96,6 +96,7 @@ function timeForAnswer() {
     gestionOfButton();
   }, timeLeft * 1000);
 }
+console.log("ciao");
 
 // function nextQuestion() {
 //   if (IndexOfquestionsArray < questions.length - 1) {
@@ -117,6 +118,7 @@ function CorrectOrWrongQuestion(userAnswer, ind) {
     countWrongAnswers++;
     console.log("non corrette: ", countWrongAnswers);
   }
+  localStorage.setItem("countCorrectAnswers", countCorrectAnswers);
 }
 
 const creationOfButton = () => {
@@ -232,6 +234,9 @@ function FourRandomNumbers() {
 }
 
 const lastPage = () => {
+  const timerDiv = document.querySelector(".countdown");
+  const header = document.getElementsByTagName("header")[0];
+  header.removeChild(timerDiv);
   const h1ForQuestion = document.getElementById("h1-second-page");
   h1ForQuestion.innerText = "COMPLIMENTI HAI TERMINATO IL TEST!";
   const mainOfPage = document.getElementById("main-second-page");
@@ -317,7 +322,7 @@ window.onload = function () {
   selectOnlyOne();
   creationOfButton();
 };
-
+localStorage.setItem("countCorrectAnswers", countCorrectAnswers);
 // Come calcolare il risultato? Hai due strade:
 // Se stai mostrando tutte le domande nello stesso momento, controlla semplicemente se i radio button selezionati sono === correct_answer
 // Se stai mostrando una domanda alla volta, aggiungi semplicemente un punto alla variabile del punteggio che hai precedentemente creato SE la risposta selezionata è === correct_answer
