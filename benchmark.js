@@ -158,9 +158,21 @@ function selectOnlyOne() {
   });
 }
 
+function gestionOfTrueFalse(ind) {
+  const falseInput = document.getElementById("false-input");
+  const trueInput = document.getElementById("true-input");
+  trueInput.addEventListener("click", () => {
+    falseInput.checked = false;
+    trueInput.checked = true;
+  });
+  falseInput.addEventListener("click", () => {
+    trueInput.checked = false;
+    falseInput.checked = true;
+  });
+}
+
 const gestionOfButton = () => {
   const selectedAnswer = document.querySelector(".selected-answer");
-
   if (selectedAnswer) {
     CorrectOrWrongQuestion(selectedAnswer.value, IndexOfquestionsArray);
   }
@@ -201,7 +213,10 @@ const gestionOfButton = () => {
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
     ) {
       FourAnswers(IndexOfquestionsArray);
-    } else trueFalseAnswers(IndexOfquestionsArray);
+    } else {
+      trueFalseAnswers(IndexOfquestionsArray);
+      gestionOfTrueFalse(IndexOfquestionsArray);
+    }
   }
 };
 
@@ -269,6 +284,7 @@ const trueFalseAnswers = () => {
   bothLabel[1].setAttribute("for", "false-input");
   bothLabel[0].innerText = "True";
   bothLabel[1].innerText = "False";
+  console.dir(bothRadioInput[1]);
   creationOfButton();
 };
 
