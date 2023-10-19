@@ -158,9 +158,21 @@ function selectOnlyOne() {
   });
 }
 
+function gestionOfTrueFalse(ind) {
+  const falseInput = document.getElementById("false-input");
+  const trueInput = document.getElementById("true-input");
+  trueInput.addEventListener("click", () => {
+    falseInput.checked = false;
+    trueInput.checked = true;
+  });
+  falseInput.addEventListener("click", () => {
+    trueInput.checked = false;
+    falseInput.checked = true;
+  });
+}
+
 const gestionOfButton = (verify) => {
   const selectedAnswer = document.querySelector(".selected-answer");
-
   if (selectedAnswer && verify) {
     CorrectOrWrongQuestion(selectedAnswer.value, IndexOfquestionsArray);
   }
@@ -172,6 +184,10 @@ const gestionOfButton = (verify) => {
     Array.from(divForAnyanswer).forEach((div) => {
       div.remove();
     });
+    const previousDivs = document.getElementsByClassName(
+      "contain-answers-true-false"
+    );
+    Array.from(previousDivs).forEach((div) => div.remove());
     lastPage();
   } else {
     const ptoRemove = document.querySelector("#footer-second-page > p");
@@ -185,14 +201,21 @@ const gestionOfButton = (verify) => {
     Array.from(divForAnyanswer).forEach((div) => {
       div.remove();
     });
+    const previousDivs = document.getElementsByClassName(
+      "contain-answers-true-false"
+    );
+    Array.from(previousDivs).forEach((div) => div.remove());
     const h1ForQuestion = document.getElementById("h1-second-page");
     h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
     if (
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !==
-        "false" ||
+        "false" &&
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
     ) {
       FourAnswers(IndexOfquestionsArray);
+    } else {
+      trueFalseAnswers(IndexOfquestionsArray);
+      gestionOfTrueFalse(IndexOfquestionsArray);
     }
   }
 };
@@ -222,21 +245,48 @@ const lastPage = () => {
   mainOfPage.appendChild(button);
   button.innerHTML = "Vai ai risultati!";
   button.addEventListener("click", function () {
-    countCorrectAnswers = countCorrectAnswers.toString();
-    console.log(countCorrectAnswers);
-    localStorage.setItem("countCorrectAnswers", countCorrectAnswers);
     setTimeout(function () {
       window.location.href = "./results.html";
     }, 3000);
   });
 };
 
-// const trueFalseAnswers = (ind) => {
-//   const arrayAnswers = questions[ind].incorrect_answers.concat(
-//     questions[ind].correct_answer
-//   );
-//   for (let i = 0; i < 2; i++) {}
-// };
+const trueFalseAnswers = () => {
+  const previousDivs = document.getElementsByClassName(
+    "contain-answers-true-false"
+  );
+  Array.from(previousDivs).forEach((div) => div.remove());
+  const mainOfPage = document.getElementById("main-second-page");
+  const divAnswers = document.createElement("div");
+  mainOfPage.appendChild(divAnswers);
+  divAnswers.classList.add("div-true-false");
+  for (let i = 0; i < 2; i++) {
+    const divForAnyAnswers = document.createElement("div");
+    divAnswers.appendChild(divForAnyAnswers);
+    divForAnyAnswers.classList.add("contain-answers-true-false");
+    const radioInput = document.createElement("input");
+    const label = document.createElement("label");
+    radioInput.type = "radio";
+    radioInput.classList.add("true-false-input");
+    divForAnyAnswers.appendChild(radioInput);
+    divForAnyAnswers.appendChild(label);
+  }
+  const bothRadioInput = document.getElementsByClassName("true-false-input");
+  bothRadioInput[0].setAttribute("id", "true-input");
+  bothRadioInput[1].setAttribute("id", "false-input");
+  bothRadioInput[0].value = "true";
+  bothRadioInput[1].value = "false";
+  const bothLabel = document.getElementsByTagName("label");
+  Array.from(bothLabel).forEach((label) =>
+    label.classList.add("label-true-false")
+  );
+  bothLabel[0].setAttribute("for", "true-input");
+  bothLabel[1].setAttribute("for", "false-input");
+  bothLabel[0].innerText = "True";
+  bothLabel[1].innerText = "False";
+  console.dir(bothRadioInput[1]);
+  creationOfButton();
+};
 
 const FourAnswers = (ind) => {
   const arrayAnswers = questions[ind].incorrect_answers.concat(
@@ -293,7 +343,7 @@ window.onload = function () {
   ) {
     FourAnswers(IndexOfquestionsArray);
   } else {
-    // trueFalseAnswers(IndexOfquestionsArray);
+    trueFalseAnswers(IndexOfquestionsArray);
   }
   selectOnlyOne();
   creationOfButton();
