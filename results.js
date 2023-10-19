@@ -1,7 +1,5 @@
-const answers = localStorage.getItem("score");
-console.log(answers);
-const correctAnswer = parseInt(answers);
-const wrongAnswer = 10 - parseInt(answers);
+const correctAnswer = parseInt(2);
+const wrongAnswer = 10 - parseInt(correctAnswer);
 const allQuestions = 10;
 const correctPercentage = document.getElementById("true_question");
 const wrongPercentage = document.getElementById("false_question");
