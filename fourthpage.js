@@ -27,5 +27,6 @@ button[0].addEventListener("click", function (event) {
   event.preventDefault();
 
   alert("Feedback inviato! Adesso verrà aperta una nuova pagina.");
+  window.location.href = "firstpage.html";
   window.open("https://epicode.com/", "_blank");
 });
