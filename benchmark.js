@@ -107,6 +107,7 @@ function timeForAnswer() {
     gestionOfButton(false);
   }, timeLeft * 1000);
 }
+console.log("ciao");
 
 function CorrectOrWrongQuestion(userAnswer, ind) {
   clearTimeout(timer);
