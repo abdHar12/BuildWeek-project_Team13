@@ -1,5 +1,7 @@
-const correctAnswer = parseInt(2);
-const wrongAnswer = 10 - parseInt(correctAnswer);
+countCorrectAnswers = parseInt(localStorage.getItem("countCorrectAnswers"));
+const correctAnswer = parseInt(countCorrectAnswers);
+console.log(correctAnswer);
+const wrongAnswer = 10 - parseInt(countCorrectAnswers);
 const allQuestions = 10;
 const correctPercentage = document.getElementById("true_question");
 const wrongPercentage = document.getElementById("false_question");
