@@ -125,19 +125,23 @@ const creationOfButton = () => {
   button.addEventListener("click", gestionOfButton);
 };
 
+const remotionSelectedAnswer = () => {
+  const selectedAnswers = document.querySelectorAll(".selected-answer");
+  Array.from(selectedAnswers).forEach((selAns) => {
+    selAns.checked = false;
+    selAns.classList.remove("selected-answer");
+  });
+};
+
 function selectOnlyOne() {
   const answers = document.querySelectorAll(".answers");
   const button = document.getElementById("button-confirm-question");
   const arrayInputElements = [];
   button.disabled = arrayInputElements.length !== 1;
-  // console.log(answers);
+  console.log(answers);
   answers.forEach((ans) => {
     ans.addEventListener("click", (e) => {
-      const selectedAnswers = document.querySelectorAll(".selected-answer");
-      Array.from(selectedAnswers).forEach((selAns) => {
-        selAns.checked = false;
-        selAns.classList.remove("selected-answer");
-      });
+      remotionSelectedAnswer();
       e.target.classList.add("selected-answer");
       e.target.checked = true;
       arrayInputElements.push(ans);
@@ -146,9 +150,33 @@ function selectOnlyOne() {
   });
 }
 
+function gestionOfTrueFalse(ind) {
+  const falseInput = document.getElementById("false-input");
+  const trueInput = document.getElementById("true-input");
+  const button = document.getElementById("button-confirm-question");
+  const arrayInputElements = [];
+
+  button.disabled = arrayInputElements.length !== 1;
+  trueInput.addEventListener("click", (e) => {
+    falseInput.checked = false;
+    trueInput.checked = true;
+    arrayInputElements.push(e.target.value);
+    remotionSelectedAnswer();
+    e.target.classList.add("selected-answer");
+    button.disabled = false;
+  });
+  falseInput.addEventListener("click", (e) => {
+    trueInput.checked = false;
+    falseInput.checked = true;
+    remotionSelectedAnswer();
+    e.target.classList.add("selected-answer");
+    arrayInputElements.push(e.target.value);
+    button.disabled = false;
+  });
+}
+
 const gestionOfButton = () => {
   const selectedAnswer = document.querySelector(".selected-answer");
-
   if (selectedAnswer) {
     CorrectOrWrongQuestion(selectedAnswer.value, IndexOfquestionsArray);
   }
@@ -186,7 +214,6 @@ const gestionOfButton = () => {
 
 function FourRandomNumbers() {
   const randomNumbers = [];
-  // console.log(randomNumbers.length);
   while (randomNumbers.length < 4) {
     let random = Math.floor(Math.random() * 4);
     if (!randomNumbers.includes(random)) {
@@ -249,7 +276,7 @@ const FourAnswers = (ind) => {
   }
   creationOfButton();
   selectOnlyOne();
-  // console.log(IndexOfquestionsArray);
+  timeForAnswer();
 };
 
 window.onload = function () {
