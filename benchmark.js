@@ -81,6 +81,7 @@ const questions = [
     incorrect_answers: ["Python", "C", "Jakarta"],
   },
 ];
+
 let countCorrectAnswers = 0;
 let countWrongAnswers = 0;
 let IndexOfquestionsArray = 0;
@@ -108,8 +109,8 @@ function timeForAnswer() {
 
 function CorrectOrWrongQuestion(userAnswer, ind) {
   clearTimeout(timer);
-  let currentQuestion = questions[ind];
-  if (userAnswer === currentQuestion.correct_answer) {
+
+  if (userAnswer.toLowerCase() === questions[ind].correct_answer.toLowerCase()) {
     countCorrectAnswers++;
     console.log("corrette: ", countCorrectAnswers);
   } else {
@@ -122,7 +123,7 @@ const creationOfButton = () => {
   const button = document.getElementById("button-confirm-question");
   const mainOfPage = document.getElementById("main-second-page");
   mainOfPage.appendChild(button);
-  button.addEventListener("click", gestionOfButton);
+  button.addEventListener("click", gestionOfButton, true);
 };
 
 const remotionSelectedAnswer = () => {
@@ -150,12 +151,11 @@ function selectOnlyOne() {
   });
 }
 
-function gestionOfTrueFalse(ind) {
+function gestionOfTrueFalse() {
   const falseInput = document.getElementById("false-input");
   const trueInput = document.getElementById("true-input");
   const button = document.getElementById("button-confirm-question");
   const arrayInputElements = [];
-
   button.disabled = arrayInputElements.length !== 1;
   trueInput.addEventListener("click", (e) => {
     falseInput.checked = false;
@@ -180,7 +180,10 @@ const gestionOfButton = () => {
   if (selectedAnswer) {
     CorrectOrWrongQuestion(selectedAnswer.value, IndexOfquestionsArray);
   }
-
+  const timerDiv = document.querySelector(".countdown");
+  const header = document.getElementsByTagName("header")[0];
+  header.removeChild(timerDiv);
+  header.appendChild(timerDiv);
   // console.clear();
   IndexOfquestionsArray++;
   if (IndexOfquestionsArray >= 10) {
@@ -208,6 +211,11 @@ const gestionOfButton = () => {
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
     ) {
       FourAnswers(IndexOfquestionsArray);
+      timeForAnswer();
+    } else {
+      trueFalseAnswers(IndexOfquestionsArray);
+      gestionOfTrueFalse(IndexOfquestionsArray);
+      timeForAnswer();
     }
   }
 };
@@ -276,8 +284,8 @@ const FourAnswers = (ind) => {
   }
   creationOfButton();
   selectOnlyOne();
-  timeForAnswer();
 };
+timeForAnswer();
 
 window.onload = function () {
   // TIPS:
