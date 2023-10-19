@@ -8,8 +8,8 @@ const questions = [
     incorrect_answers: [
       "Central Process Unit",
       "Computer Personal Unit",
-      "Central Processor Unit",
-    ],
+      "Central Processor Unit"
+    ]
   },
   {
     category: "Science: Computers",
@@ -18,7 +18,7 @@ const questions = [
     question:
       "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: "Final",
-    incorrect_answers: ["Static", "Private", "Public"],
+    incorrect_answers: ["Static", "Private", "Public"]
   },
   {
     category: "Science: Computers",
@@ -26,7 +26,7 @@ const questions = [
     difficulty: "easy",
     question: "The logo for Snapchat is a Bell.",
     correct_answer: "False",
-    incorrect_answers: ["True"],
+    incorrect_answers: ["True"]
   },
   {
     category: "Science: Computers",
@@ -35,7 +35,7 @@ const questions = [
     question:
       "Pointers were not used in the original C programming language; they were added later on in C++.",
     correct_answer: "False",
-    incorrect_answers: ["True"],
+    incorrect_answers: ["True"]
   },
   {
     category: "Science: Computers",
@@ -44,7 +44,7 @@ const questions = [
     question:
       "What is the most preferred image format used for logos in the Wikimedia database?",
     correct_answer: ".svg",
-    incorrect_answers: [".png", ".jpeg", ".gif"],
+    incorrect_answers: [".png", ".jpeg", ".gif"]
   },
   {
     category: "Science: Computers",
@@ -55,8 +55,8 @@ const questions = [
     incorrect_answers: [
       "Counter Strike: Source",
       "Corrective Style Sheet",
-      "Computer Style Sheet",
-    ],
+      "Computer Style Sheet"
+    ]
   },
   {
     category: "Science: Computers",
@@ -65,7 +65,7 @@ const questions = [
     question:
       "What is the code name for the mobile operating system Android 7.0?",
     correct_answer: "Nougat",
-    incorrect_answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow"],
+    incorrect_answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow"]
   },
   {
     category: "Science: Computers",
@@ -73,7 +73,7 @@ const questions = [
     difficulty: "easy",
     question: "On Twitter, what is the character limit for a Tweet?",
     correct_answer: "140",
-    incorrect_answers: ["120", "160", "100"],
+    incorrect_answers: ["120", "160", "100"]
   },
   {
     category: "Science: Computers",
@@ -81,7 +81,7 @@ const questions = [
     difficulty: "easy",
     question: "Linux was first created as an alternative to Windows XP.",
     correct_answer: "False",
-    incorrect_answers: ["True"],
+    incorrect_answers: ["True"]
   },
   {
     category: "Science: Computers",
@@ -90,8 +90,8 @@ const questions = [
     question:
       "Which programming language shares its name with an island in Indonesia?",
     correct_answer: "Java",
-    incorrect_answers: ["Python", "C", "Jakarta"],
-  },
+    incorrect_answers: ["Python", "C", "Jakarta"]
+  }
 ];
 let countCorrectAnswers = 0;
 let countWrongAnswers = 0;
@@ -99,26 +99,8 @@ let IndexOfquestionsArray = 0;
 let timer;
 let controlOfTheAnswers = [];
 
-function timeForAnswer() {
-  let timeLeft = 20;
-  timer = setTimeout(function () {
-    countWrongAnswers++;
-    console.log("non corrette: " + countWrongAnswers);
-    gestionOfButton(false);
-  }, timeLeft * 1000);
-}
-
-// function nextQuestion() {
-//   if (IndexOfquestionsArray < questions.length - 1) {
-//     IndexOfquestionsArray++;
-//     FourAnswers();
-//   }
-// } else {
-//   quizCompleted();
-// }
-// }
-
 function CorrectOrWrongQuestion(userAnswer, ind) {
+  clearTimeout(timer);
   let currentQuestion = questions[ind];
   if (userAnswer === currentQuestion.correct_answer) {
     countCorrectAnswers++;
@@ -127,7 +109,6 @@ function CorrectOrWrongQuestion(userAnswer, ind) {
     countWrongAnswers++;
     console.log("non corrette: ", countWrongAnswers);
   }
-  clearTimeout(timer);
 }
 
 const creationOfButton = () => {
@@ -135,6 +116,14 @@ const creationOfButton = () => {
   const mainOfPage = document.getElementById("main-second-page");
   mainOfPage.appendChild(button);
   button.addEventListener("click", gestionOfButton);
+};
+
+const remotionSelectedAnswer = () => {
+  const selectedAnswers = document.querySelectorAll(".selected-answer");
+  Array.from(selectedAnswers).forEach((selAns) => {
+    selAns.checked = false;
+    selAns.classList.remove("selected-answer");
+  });
 };
 
 function selectOnlyOne() {
@@ -145,11 +134,8 @@ function selectOnlyOne() {
   // console.log(answers);
   answers.forEach((ans) => {
     ans.addEventListener("click", (e) => {
-      const selectedAnswers = document.querySelectorAll(".selected-answer");
-      Array.from(selectedAnswers).forEach((selAns) => {
-        selAns.checked = false;
-        selAns.classList.remove("selected-answer");
-      });
+      remotionSelectedAnswer();
+
       e.target.classList.add("selected-answer");
       e.target.checked = true;
       arrayInputElements.push(ans);
@@ -161,29 +147,25 @@ function selectOnlyOne() {
 function gestionOfTrueFalse(ind) {
   const falseInput = document.getElementById("false-input");
   const trueInput = document.getElementById("true-input");
-  trueInput.addEventListener("click", () => {
-    falseInput.checked = false;
-    trueInput.checked = true;
-  });
-  falseInput.addEventListener("click", () => {
-    trueInput.checked = false;
-    falseInput.checked = true;
-  });
-}
+  const button = document.getElementById("button-confirm-question");
+  const arrayInputElements = [];
 
-const gestionOfButton = (verify) => {
-  const selectedAnswer = document.querySelector(".selected-answer");
-  if (selectedAnswer && verify) {
-function gestionOfTrueFalse(ind) {
-  const falseInput = document.getElementById("false-input");
-  const trueInput = document.getElementById("true-input");
-  trueInput.addEventListener("click", () => {
+  button.disabled = arrayInputElements.length !== 1;
+  trueInput.addEventListener("click", (e) => {
     falseInput.checked = false;
     trueInput.checked = true;
+    arrayInputElements.push(e.target.value);
+    remotionSelectedAnswer();
+    e.target.classList.add("selected-answer");
+    button.disabled = false;
   });
-  falseInput.addEventListener("click", () => {
+  falseInput.addEventListener("click", (e) => {
     trueInput.checked = false;
     falseInput.checked = true;
+    remotionSelectedAnswer();
+    e.target.classList.add("selected-answer");
+    arrayInputElements.push(e.target.value);
+    button.disabled = false;
   });
 }
 
@@ -238,7 +220,6 @@ const gestionOfButton = () => {
 
 function FourRandomNumbers() {
   const randomNumbers = [];
-  // console.log(randomNumbers.length);
   while (randomNumbers.length < 4) {
     let random = Math.floor(Math.random() * 4);
     if (!randomNumbers.includes(random)) {
@@ -330,7 +311,6 @@ const FourAnswers = (ind) => {
   }
   creationOfButton();
   selectOnlyOne();
-  timeForAnswer();
   // console.log(IndexOfquestionsArray);
 };
 
