@@ -141,7 +141,7 @@ function selectOnlyOne() {
   const button = document.getElementById("button-confirm-question");
   const arrayInputElements = [];
   button.disabled = arrayInputElements.length !== 1;
-  // console.log(answers);
+  console.log(answers);
   answers.forEach((ans) => {
     ans.addEventListener("click", (e) => {
       remotionSelectedAnswer();
@@ -320,7 +320,7 @@ const FourAnswers = (ind) => {
   }
   creationOfButton();
   selectOnlyOne();
-  // console.log(IndexOfquestionsArray);
+  timeForAnswer();
 };
 
 window.onload = function () {
