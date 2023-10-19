@@ -135,7 +135,6 @@ function selectOnlyOne() {
   answers.forEach((ans) => {
     ans.addEventListener("click", (e) => {
       remotionSelectedAnswer();
-
       e.target.classList.add("selected-answer");
       e.target.checked = true;
       arrayInputElements.push(ans);
