@@ -193,7 +193,7 @@ ul > li {
   display: grid;
   width: 10em;
   height: 10em;
-  position: fixed;
+  position: absolute;
   margin-right: 8rem;
   top: 0;
   right: 0;
@@ -208,8 +208,9 @@ ul > li {
   content: counter(s, decimal-leading-zero);
   color: white;
 }
-.label-true-false {
-  color: white;
+.div-true-false {
+  margin-top: 20rem;
+  margin-bottom: 20rem;
 }
 .contain-answers-true-false {
   width: 50%;
@@ -219,15 +220,7 @@ ul > li {
   text-align: left;
   margin-inline: auto;
 }
-.true-false-input {
-  color: white;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
+
 @keyframes num {
   0% {
     counter-reset: s 20;
