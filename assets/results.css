@@ -1,4 +1,6 @@
 #logo-container img {
+  display: flex;
+  position: absolute;
   top: 0;
   left: 0;
   max-width: 200px;
@@ -7,9 +9,11 @@
   z-index: 1;
 }
 
-body {
+#result-body {
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   min-height: 100%;
   background-image: url("./img/bg.jpg");
@@ -23,15 +27,18 @@ body {
   font-family: "Outfit", sans-serif;
   color: white;
   letter-spacing: 1.5px;
-  line-height: 5%;
-  font-size: 35px;
+  line-height: 12px;
+  font-size: 25px;
   margin-inline: auto;
   text-align: center;
-  margin-top: 20px;
 }
 
 .result > p {
   letter-spacing: 0.4px;
+}
+
+.percentage {
+  position: relative;
 }
 
 .answers {
@@ -39,7 +46,7 @@ body {
   font-family: "Outfit", sans-serif;
   font-size: 45px;
   position: absolute;
-  top: 300px;
+  top: 236px;
 }
 
 .container {
@@ -69,7 +76,7 @@ body {
 
 #feedback-button {
   background-color: transparent;
-  border: 3px white solid;
+  border: 2px white solid;
   color: white;
   font-family: "Outfit", sans-serif;
   text-transform: uppercase;
@@ -92,7 +99,7 @@ body {
 }
 
 .button:hover {
-  box-shadow: 0px 0px 14px 30px rgb(27, 181, 176);
+  box-shadow: 0px 0px 14px 3px rgba(207, 255, 253, 1);
 }
 
 #true_question {
