@@ -103,22 +103,12 @@ let controlOfTheAnswers = [];
 function timeForAnswer() {
   let timeLeft = 20;
   timer = setTimeout(function () {
-    const selectedAnswer = document.querySelector(".selected-answer");
-    selectedAnswer.classList.remove("selected-answer");
-    gestionOfButton();
+    countWrongAnswers++;
+    console.log("non corrette: " + countWrongAnswers);
+    gestionOfButton(false);
   }, timeLeft * 1000);
 }
 console.log("ciao");
-
-// function nextQuestion() {
-//   if (IndexOfquestionsArray < questions.length - 1) {
-//     IndexOfquestionsArray++;
-//     FourAnswers();
-//   }
-// } else {
-//   quizCompleted();
-// }
-// }
 
 function CorrectOrWrongQuestion(userAnswer, ind) {
   clearTimeout(timer);
@@ -207,6 +197,10 @@ const gestionOfButton = (verify) => {
     Array.from(divForAnyanswer).forEach((div) => {
       div.remove();
     });
+    const previousDivs = document.getElementsByClassName(
+      "contain-answers-true-false"
+    );
+    Array.from(previousDivs).forEach((div) => div.remove());
     lastPage();
   } else {
     const ptoRemove = document.querySelector("#footer-second-page > p");
@@ -220,11 +214,15 @@ const gestionOfButton = (verify) => {
     Array.from(divForAnyanswer).forEach((div) => {
       div.remove();
     });
+    const previousDivs = document.getElementsByClassName(
+      "contain-answers-true-false"
+    );
+    Array.from(previousDivs).forEach((div) => div.remove());
     const h1ForQuestion = document.getElementById("h1-second-page");
     h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
     if (
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !==
-        "false" ||
+        "false" &&
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
     ) {
       FourAnswers(IndexOfquestionsArray);
@@ -263,9 +261,6 @@ const lastPage = () => {
   mainOfPage.appendChild(button);
   button.innerHTML = "Vai ai risultati!";
   button.addEventListener("click", function () {
-    countCorrectAnswers = countCorrectAnswers.toString();
-    console.log(countCorrectAnswers);
-    localStorage.setItem("countCorrectAnswers", countCorrectAnswers);
     setTimeout(function () {
       window.location.href = "./results.html";
     }, 3000);
@@ -273,46 +268,42 @@ const lastPage = () => {
 };
 
 const trueFalseAnswers = () => {
-  const previousDivs = document.getElementsByClassName(
-    "contain-answers-true-false"
-  );
-  Array.from(previousDivs).forEach((div) => div.remove());
+  let divAnswers, divAnswersTrueFalse;
   const mainOfPage = document.getElementById("main-second-page");
-  const divAnswers = document.createElement("div");
+  if (IndexOfquestionsArray > 0) {
+    divAnswers = document.getElementsByClassName("div-four-answers");
+    divAnswersTrueFalse = document.getElementsByClassName("div-true-false");
+    Array.from(divAnswers).forEach((div) => div.remove());
+    Array.from(divAnswersTrueFalse).forEach((div) => div.remove());
+    divAnswers = document.createElement("div");
+  } else {
+    divAnswers = document.createElement("div");
+  }
   mainOfPage.appendChild(divAnswers);
   divAnswers.classList.add("div-true-false");
+
   for (let i = 0; i < 2; i++) {
-    const divForAnyAnswers = document.createElement("div");
-    divAnswers.appendChild(divForAnyAnswers);
-    divForAnyAnswers.classList.add("contain-answers-true-false");
-    const radioInput = document.createElement("input");
-    const label = document.createElement("label");
-    radioInput.type = "radio";
-    radioInput.classList.add("true-false-input");
-    divForAnyAnswers.appendChild(radioInput);
-    divForAnyAnswers.appendChild(label);
+    const divForAnyanswer = document.createElement("div");
+    divForAnyanswer.classList.add("contain-answers");
+    divAnswers.appendChild(divForAnyanswer);
+    const inputButtonForAnyAnswer = document.createElement("input");
+    inputButtonForAnyAnswer.classList.add("answers");
+    inputButtonForAnyAnswer.type = "button";
+    divForAnyanswer.appendChild(inputButtonForAnyAnswer);
   }
-  const bothRadioInput = document.getElementsByClassName("true-false-input");
-  bothRadioInput[0].setAttribute("id", "true-input");
-  bothRadioInput[1].setAttribute("id", "false-input");
-  bothRadioInput[0].value = "true";
-  bothRadioInput[1].value = "false";
-  const bothLabel = document.getElementsByTagName("label");
-  Array.from(bothLabel).forEach((label) =>
-    label.classList.add("label-true-false")
-  );
-  bothLabel[0].setAttribute("for", "true-input");
-  bothLabel[1].setAttribute("for", "false-input");
-  bothLabel[0].innerText = "True";
-  bothLabel[1].innerText = "False";
-  console.dir(bothRadioInput[1]);
+
+  const inputButtonForAnyAnswer = document.getElementsByClassName("answers");
+  inputButtonForAnyAnswer[0].value = "True";
+  inputButtonForAnyAnswer[1].value = "False";
   creationOfButton();
+  selectOnlyOne();
 };
 
 const FourAnswers = (ind) => {
   const arrayAnswers = questions[ind].incorrect_answers.concat(
     questions[ind].correct_answer
   );
+  let divAnswers, divAnswersTrueFalse;
   // console.log(arrayAnswers);
   const numbersInArray = FourRandomNumbers();
   const mainOfPage = document.getElementById("main-second-page");
@@ -368,7 +359,7 @@ window.onload = function () {
   ) {
     FourAnswers(IndexOfquestionsArray);
   } else {
-    // trueFalseAnswers(IndexOfquestionsArray);
+    trueFalseAnswers(IndexOfquestionsArray);
   }
   selectOnlyOne();
   creationOfButton();
