@@ -5,11 +5,7 @@ const questions = [
     difficulty: "easy",
     question: "What does CPU stand for?",
     correct_answer: "Central Processing Unit",
-    incorrect_answers: [
-      "Central Process Unit",
-      "Computer Personal Unit",
-      "Central Processor Unit",
-    ],
+    incorrect_answers: ["Central Process Unit", "Computer Personal Unit", "Central Processor Unit"],
   },
   {
     category: "Science: Computers",
@@ -32,8 +28,7 @@ const questions = [
     category: "Science: Computers",
     type: "boolean",
     difficulty: "easy",
-    question:
-      "Pointers were not used in the original C programming language; they were added later on in C++.",
+    question: "Pointers were not used in the original C programming language; they were added later on in C++.",
     correct_answer: "False",
     incorrect_answers: ["True"],
   },
@@ -41,8 +36,7 @@ const questions = [
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question:
-      "What is the most preferred image format used for logos in the Wikimedia database?",
+    question: "What is the most preferred image format used for logos in the Wikimedia database?",
     correct_answer: ".svg",
     incorrect_answers: [".png", ".jpeg", ".gif"],
   },
@@ -52,18 +46,13 @@ const questions = [
     difficulty: "easy",
     question: "In web design, what does CSS stand for?",
     correct_answer: "Cascading Style Sheet",
-    incorrect_answers: [
-      "Counter Strike: Source",
-      "Corrective Style Sheet",
-      "Computer Style Sheet",
-    ],
+    incorrect_answers: ["Counter Strike: Source", "Corrective Style Sheet", "Computer Style Sheet"],
   },
   {
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question:
-      "What is the code name for the mobile operating system Android 7.0?",
+    question: "What is the code name for the mobile operating system Android 7.0?",
     correct_answer: "Nougat",
     incorrect_answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow"],
   },
@@ -87,8 +76,7 @@ const questions = [
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question:
-      "Which programming language shares its name with an island in Indonesia?",
+    question: "Which programming language shares its name with an island in Indonesia?",
     correct_answer: "Java",
     incorrect_answers: ["Python", "C", "Jakarta"],
   },
@@ -103,19 +91,27 @@ let controlOfTheAnswers = [];
 function timeForAnswer() {
   let timeLeft = 20;
   timer = setTimeout(function () {
-    countWrongAnswers++;
-    console.log("non corrette: " + countWrongAnswers);
-    gestionOfButton(false);
+    const selectedAnswer = document.querySelector(".selected-answer");
+    selectedAnswer.classList.remove("selected-answer");
+    gestionOfButton();
   }, timeLeft * 1000);
 }
 console.log("ciao");
 
+// function nextQuestion() {
+//   if (IndexOfquestionsArray < questions.length - 1) {
+//     IndexOfquestionsArray++;
+//     FourAnswers();
+//   }
+// } else {
+//   quizCompleted();
+// }
+// }
+
 function CorrectOrWrongQuestion(userAnswer, ind) {
   clearTimeout(timer);
 
-  if (
-    userAnswer.toLowerCase() === questions[ind].correct_answer.toLowerCase()
-  ) {
+  if (userAnswer.toLowerCase() === questions[ind].correct_answer.toLowerCase()) {
     countCorrectAnswers++;
     console.log("corrette: ", countCorrectAnswers);
   } else {
@@ -197,10 +193,6 @@ const gestionOfButton = () => {
     Array.from(divForAnyanswer).forEach((div) => {
       div.remove();
     });
-    const previousDivs = document.getElementsByClassName(
-      "contain-answers-true-false"
-    );
-    Array.from(previousDivs).forEach((div) => div.remove());
     lastPage();
   } else {
     const ptoRemove = document.querySelector("#footer-second-page > p");
@@ -214,15 +206,10 @@ const gestionOfButton = () => {
     Array.from(divForAnyanswer).forEach((div) => {
       div.remove();
     });
-    const previousDivs = document.getElementsByClassName(
-      "contain-answers-true-false"
-    );
-    Array.from(previousDivs).forEach((div) => div.remove());
     const h1ForQuestion = document.getElementById("h1-second-page");
     h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
     if (
-      questions[IndexOfquestionsArray].correct_answer.toLowerCase() !==
-        "false" &&
+      questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "false" ||
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
     ) {
       FourAnswers(IndexOfquestionsArray);
@@ -262,53 +249,24 @@ const lastPage = () => {
   mainOfPage.appendChild(button);
   button.innerHTML = "Vai ai risultati!";
   button.addEventListener("click", function () {
+    countCorrectAnswers = countCorrectAnswers.toString();
+    console.log(countCorrectAnswers);
+    localStorage.setItem("countCorrectAnswers", countCorrectAnswers);
     setTimeout(function () {
       window.location.href = "./results.html";
     }, 3000);
   });
 };
 
-const trueFalseAnswers = () => {
-  const previousDivs = document.getElementsByClassName(
-    "contain-answers-true-false"
-  );
-  Array.from(previousDivs).forEach((div) => div.remove());
-  const mainOfPage = document.getElementById("main-second-page");
-  const divAnswers = document.createElement("div");
-  mainOfPage.appendChild(divAnswers);
-  divAnswers.classList.add("div-true-false");
-  for (let i = 0; i < 2; i++) {
-    const divForAnyAnswers = document.createElement("div");
-    divAnswers.appendChild(divForAnyAnswers);
-    divForAnyAnswers.classList.add("contain-answers-true-false");
-    const radioInput = document.createElement("input");
-    const label = document.createElement("label");
-    radioInput.type = "radio";
-    radioInput.classList.add("true-false-input");
-    divForAnyAnswers.appendChild(radioInput);
-    divForAnyAnswers.appendChild(label);
-  }
-  const bothRadioInput = document.getElementsByClassName("true-false-input");
-  bothRadioInput[0].setAttribute("id", "true-input");
-  bothRadioInput[1].setAttribute("id", "false-input");
-  bothRadioInput[0].value = "true";
-  bothRadioInput[1].value = "false";
-  const bothLabel = document.getElementsByTagName("label");
-  Array.from(bothLabel).forEach((label) =>
-    label.classList.add("label-true-false")
-  );
-  bothLabel[0].setAttribute("for", "true-input");
-  bothLabel[1].setAttribute("for", "false-input");
-  bothLabel[0].innerText = "True";
-  bothLabel[1].innerText = "False";
-  console.dir(bothRadioInput[1]);
-  creationOfButton();
-};
+// const trueFalseAnswers = (ind) => {
+//   const arrayAnswers = questions[ind].incorrect_answers.concat(
+//     questions[ind].correct_answer
+//   );
+//   for (let i = 0; i < 2; i++) {}
+// };
 
 const FourAnswers = (ind) => {
-  const arrayAnswers = questions[ind].incorrect_answers.concat(
-    questions[ind].correct_answer
-  );
+  const arrayAnswers = questions[ind].incorrect_answers.concat(questions[ind].correct_answer);
   // console.log(arrayAnswers);
   const numbersInArray = FourRandomNumbers();
   for (let i = 0; i < 4; i++) {
@@ -359,7 +317,7 @@ window.onload = function () {
   ) {
     FourAnswers(IndexOfquestionsArray);
   } else {
-    trueFalseAnswers(IndexOfquestionsArray);
+    // trueFalseAnswers(IndexOfquestionsArray);
   }
   selectOnlyOne();
   creationOfButton();
