@@ -98,6 +98,7 @@ ul > li {
   color: white;
   font-size: 2.5rem;
   margin-top: 4rem;
+  padding-inline: 4rem;
 }
 .answers {
   width: 100%;
@@ -124,10 +125,10 @@ ul > li {
 #h1-second-page {
   margin-bottom: 7rem;
   margin-top: 8rem;
-  font-size: 5rem;
+
   cursor: pointer;
   font-family: "Outfit", sans-serif;
-  font-size: 5rem;
+  font-size: 60px;
   margin-bottom: 4rem;
 }
 
