@@ -43,11 +43,11 @@ body {
 }
 
 .container {
-  height: 480px;
-  width: 480px;
+  height: 530px;
+  width: 530px;
   position: relative;
   transform: translate(-50%, -70%);
-  top: 370px;
+  top: 410px;
   left: 50%;
   border-radius: 50%;
   display: grid;
@@ -79,15 +79,16 @@ body {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 20px;
+  font-size: 30px;
   margin: 4px 2px;
   cursor: pointer;
   position: absolute;
-  width: 200px;
-  top: 800px;
+  width: 300px;
+  top: 850px;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 4rem;
+  height: 80px;
 }
 
 .button:hover {
@@ -95,49 +96,51 @@ body {
 }
 
 #true_question {
-  top: 370px;
+  top: 460px;
   font-weight: bold;
   font-size: 100px;
 }
 
 #false_question {
-  top: 370px;
+  top: 460px;
   font-weight: bold;
   font-size: 100px;
 }
 
 #quantity_true {
-  top: 480px;
+  top: 580px;
   font-weight: 100;
   font-size: 40px;
 }
 
 #quantity_false {
-  top: 480px;
+  top: 580px;
   font-weight: 100;
   font-size: 40px;
 }
 
 .position_correct {
-  left: 200px;
+  left: 460px;
 }
 
 .position_wrong {
-  right: 200px;
+  right: 480px;
 }
 
 #correct {
-  font-size: 60px;
+  font-size: 100px;
+  margin-top: 50px;
 }
 
 #wrong {
-  font-size: 60px;
+  font-size: 100px;
+  margin-top: 50px;
 }
 
 #text_result {
   color: white;
-  width: 600px;
-  font-size: 28px;
+  width: 70%;
+  font-size: 23px;
   font-weight: 600;
   font-family: "Inter", sans-serif;
   position: absolute;
@@ -151,6 +154,6 @@ body {
 }
 
 .lower_text {
-  font-size: 30px;
+  font-size: 19px;
   font-weight: 100;
 }

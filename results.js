@@ -26,8 +26,8 @@ const resultCalculation = function () {
   let progress = setInterval(() => {
     progressValue++;
     progressBar.style.background = `conic-gradient(
-      purple ${progressValue * 3.6}deg,
-      aqua ${progressValue * 3.6}deg
+      #C2128D  ${progressValue * 3.6}deg,
+      #00FFFF ${progressValue * 3.6}deg
 )`;
     if (progressValue === progressEndValue) {
       clearInterval(progress);
