@@ -106,8 +106,8 @@ footer > input {
   color: black;
   background-color: transparent;
   margin-bottom: 25px;
-
-  border: 2px solid black;
+  opacity: 0.5;
+  border: 4px solid black;
 }
 
 #main-lastpage {
@@ -189,7 +189,7 @@ footer > input {
 }
 
 .feedback-starcolor {
-  filter: hue-rotate(120deg) brightness(1.5);
+  filter: hue-rotate(120deg) brightness(1);
 }
 
 .filter-none {
