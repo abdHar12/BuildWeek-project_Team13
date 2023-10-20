@@ -220,6 +220,15 @@ ul > li {
   text-align: left;
   margin-inline: auto;
 }
+#div-for-feedback {
+  width: 100%;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+#div-for-feedback > img {
+  margin-left: 3rem;
+}
 
 @keyframes num {
   0% {

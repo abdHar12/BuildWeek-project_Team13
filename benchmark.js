@@ -108,19 +108,49 @@ function timeForAnswer() {
     gestionOfButton(false);
   }, timeLeft * 1000);
 }
-console.log("ciao");
+
+function creationDivFeedback(result) {
+  const divForImage = document.getElementById("div-for-feedback");
+  divForImage.style.display = "block";
+  const img = document.createElement("img");
+  const p = document.createElement("p");
+
+  if (result) {
+    p.innerText = "CORRECT ANSWER";
+    p.style.color = "#419B45";
+  } else {
+    p.innerText = "WRONG ANSWER";
+    p.style.color = "#E81D1E";
+  }
+
+  divForImage.appendChild(p);
+  divForImage.appendChild(img);
+  p.style.display = "inline-block";
+  p.style.fontFamily = "Inter";
+  p.style.fontWeight = "bold";
+
+  setTimeout(function () {
+    p.remove();
+    img.remove();
+  }, 500);
+}
 
 function CorrectOrWrongQuestion(userAnswer, ind) {
   clearTimeout(timer);
-
   if (
     userAnswer.toLowerCase() === questions[ind].correct_answer.toLowerCase()
   ) {
     countCorrectAnswers++;
     console.log("corrette: ", countCorrectAnswers);
+    creationDivFeedback(true);
+    const img = document.querySelector("#div-for-feedback>img");
+    img.setAttribute("src", "./assets/img/true.png");
   } else {
     countWrongAnswers++;
     console.log("non corrette: ", countWrongAnswers);
+    creationDivFeedback(false);
+    const img = document.querySelector("#div-for-feedback>img");
+    img.setAttribute("src", "./assets/img/false.png");
   }
   localStorage.setItem("countCorrectAnswers", countCorrectAnswers);
 }
@@ -217,6 +247,7 @@ const gestionOfButton = (verify) => {
     const previousDivs = document.getElementsByClassName(
       "contain-answers-true-false"
     );
+
     Array.from(previousDivs).forEach((div) => div.remove());
     const h1ForQuestion = document.getElementById("h1-second-page");
     h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
@@ -231,6 +262,9 @@ const gestionOfButton = (verify) => {
       trueFalseAnswers(IndexOfquestionsArray);
       timeForAnswer();
     }
+    const main = document.getElementById("main-second-page");
+    const divForImage = document.getElementById("div-for-feedback");
+    main.appendChild(divForImage);
   }
 };
 
