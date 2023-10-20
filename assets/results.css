@@ -1,6 +1,4 @@
 #logo-container img {
-  display: flex;
-  position: absolute;
   top: 0;
   left: 0;
   max-width: 200px;
@@ -9,11 +7,9 @@
   z-index: 1;
 }
 
-#result-body {
+body {
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   min-height: 100%;
   background-image: url("./img/bg.jpg");
@@ -27,18 +23,15 @@
   font-family: "Outfit", sans-serif;
   color: white;
   letter-spacing: 1.5px;
-  line-height: 12px;
-  font-size: 25px;
+  line-height: 5%;
+  font-size: 35px;
   margin-inline: auto;
   text-align: center;
+  margin-top: 20px;
 }
 
 .result > p {
   letter-spacing: 0.4px;
-}
-
-.percentage {
-  position: relative;
 }
 
 .answers {
@@ -46,15 +39,15 @@
   font-family: "Outfit", sans-serif;
   font-size: 45px;
   position: absolute;
-  top: 236px;
+  top: 300px;
 }
 
 .container {
-  height: 550px;
-  width: 550px;
+  height: 480px;
+  width: 480px;
   position: relative;
-  transform: translate(-50%, -50%);
-  top: 300px;
+  transform: translate(-50%, -70%);
+  top: 370px;
   left: 50%;
   border-radius: 50%;
   display: grid;
@@ -76,7 +69,7 @@
 
 #feedback-button {
   background-color: transparent;
-  border: 2px white solid;
+  border: 3px white solid;
   color: white;
   font-family: "Outfit", sans-serif;
   text-transform: uppercase;
@@ -91,42 +84,42 @@
   cursor: pointer;
   position: absolute;
   width: 200px;
-  top: 712px;
+  top: 800px;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 4rem;
 }
 
 .button:hover {
-  box-shadow: 0px 0px 14px 3px rgba(207, 255, 253, 1);
+  box-shadow: 0px 0px 14px 30px rgb(27, 181, 176);
 }
 
 #true_question {
-  top: 280px;
+  top: 370px;
   font-weight: bold;
   font-size: 100px;
 }
 
 #false_question {
-  top: 280px;
+  top: 370px;
   font-weight: bold;
   font-size: 100px;
 }
 
 #quantity_true {
-  top: 380px;
+  top: 480px;
   font-weight: 100;
   font-size: 40px;
 }
 
 #quantity_false {
-  top: 393px;
+  top: 480px;
   font-weight: 100;
   font-size: 40px;
 }
 
 .position_correct {
-  left: 180px;
+  left: 200px;
 }
 
 .position_wrong {
@@ -158,6 +151,6 @@
 }
 
 .lower_text {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 100;
 }
