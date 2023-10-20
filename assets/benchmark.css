@@ -158,10 +158,15 @@ ul > li {
   margin: auto;
   border-radius: 4rem;
   margin-top: 4rem;
+  margin-bottom: 0;
+}
+footer > p {
+  margin-top: 0;
 }
 
 #h1-second-page {
-  font-size: 3rem;
+  font-size: 60px;
+  margin-top: 0;
 }
 .selected-answer {
   background-color: #c2128d;
