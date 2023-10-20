@@ -28,7 +28,7 @@ header img {
   margin-top: 4rem;
 }
 .first-h1 {
-  font-size: 5rem;
+  font-size: 8rem;
   font-family: "Outfit", sans-serif;
 }
 
@@ -38,9 +38,9 @@ header img {
 }
 
 .instruction {
-  margin-top: 2rem;
+  margin-top: 4rem;
   color: #c2128d;
-  font-size: 2rem;
+  font-size: 4rem;
   font-family: "Inter", sans-serif;
 }
 
@@ -55,7 +55,7 @@ header img {
 
 ul {
   margin-top: 4rem;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   margin-left: 2rem;
 }
 
@@ -77,18 +77,18 @@ ul > li {
   margin-left: 1rem;
   color: white;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .first-button {
-  margin-left: 10rem;
-  width: 13rem;
-  height: 3.5rem;
+  margin-left: 45rem;
+  width: 20rem;
+  height: 5rem;
   color: #0b113b;
   background: #00ffff;
   font-weight: bolder;
   border: none;
-  font-size: 1.2rem;
+  font-size: 2rem;
   box-shadow: 0 0 14px 3px rgba(207, 255, 253, 1);
   cursor: pointer;
 }
@@ -111,16 +111,20 @@ footer > input {
 }
 
 #fourth-divh3 {
-  margin-top: 2rem;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
 }
 
 #star-contain {
-  margin-top: 1.2rem;
+  margin-top: 10rem;
   margin-bottom: 8rem;
+}
+.all-star {
+  height: 6rem;
 }
 
 .fourth-h3 {
-  font-size: 2rem;
+  font-size: 2.7rem;
 }
 
 .fourth-footer {
@@ -143,17 +147,18 @@ footer > input {
   margin-top: 4rem;
   box-shadow: 0 0 14px 3px rgba(207, 255, 253, 1);
   cursor: pointer;
-  border-radius: 5px;
 }
 
 .fourth-input {
   width: 60%;
-  height: 3rem;
+
+  height: 4rem;
   background: transparent;
   border: none;
   border-bottom: 1px solid #c2128d;
   font-size: 2rem;
   color: white;
+  margin-top: 5rem;
 }
 
 .checked {
