@@ -198,7 +198,7 @@ footer > p {
   display: grid;
   width: 10em;
   height: 10em;
-  position: fixed;
+  position: absolute;
   margin-right: 8rem;
   top: 0;
   right: 0;
@@ -212,6 +212,18 @@ footer > p {
   animation: num 20s steps(1) infinite;
   content: counter(s, decimal-leading-zero);
   color: white;
+}
+.div-true-false {
+  margin-top: 20rem;
+  margin-bottom: 20rem;
+}
+.contain-answers-true-false {
+  width: 50%;
+  padding: 2rem;
+  font-size: 5rem;
+  font-family: "Outfit", sans-serif;
+  text-align: left;
+  margin-inline: auto;
 }
 
 @keyframes num {

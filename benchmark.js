@@ -5,7 +5,11 @@ const questions = [
     difficulty: "easy",
     question: "What does CPU stand for?",
     correct_answer: "Central Processing Unit",
-    incorrect_answers: ["Central Process Unit", "Computer Personal Unit", "Central Processor Unit"],
+    incorrect_answers: [
+      "Central Process Unit",
+      "Computer Personal Unit",
+      "Central Processor Unit"
+    ]
   },
   {
     category: "Science: Computers",
@@ -14,7 +18,7 @@ const questions = [
     question:
       "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: "Final",
-    incorrect_answers: ["Static", "Private", "Public"],
+    incorrect_answers: ["Static", "Private", "Public"]
   },
   {
     category: "Science: Computers",
@@ -22,23 +26,25 @@ const questions = [
     difficulty: "easy",
     question: "The logo for Snapchat is a Bell.",
     correct_answer: "False",
-    incorrect_answers: ["True"],
+    incorrect_answers: ["True"]
   },
   {
     category: "Science: Computers",
     type: "boolean",
     difficulty: "easy",
-    question: "Pointers were not used in the original C programming language; they were added later on in C++.",
+    question:
+      "Pointers were not used in the original C programming language; they were added later on in C++.",
     correct_answer: "False",
-    incorrect_answers: ["True"],
+    incorrect_answers: ["True"]
   },
   {
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question: "What is the most preferred image format used for logos in the Wikimedia database?",
+    question:
+      "What is the most preferred image format used for logos in the Wikimedia database?",
     correct_answer: ".svg",
-    incorrect_answers: [".png", ".jpeg", ".gif"],
+    incorrect_answers: [".png", ".jpeg", ".gif"]
   },
   {
     category: "Science: Computers",
@@ -46,15 +52,20 @@ const questions = [
     difficulty: "easy",
     question: "In web design, what does CSS stand for?",
     correct_answer: "Cascading Style Sheet",
-    incorrect_answers: ["Counter Strike: Source", "Corrective Style Sheet", "Computer Style Sheet"],
+    incorrect_answers: [
+      "Counter Strike: Source",
+      "Corrective Style Sheet",
+      "Computer Style Sheet"
+    ]
   },
   {
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question: "What is the code name for the mobile operating system Android 7.0?",
+    question:
+      "What is the code name for the mobile operating system Android 7.0?",
     correct_answer: "Nougat",
-    incorrect_answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow"],
+    incorrect_answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow"]
   },
   {
     category: "Science: Computers",
@@ -62,7 +73,7 @@ const questions = [
     difficulty: "easy",
     question: "On Twitter, what is the character limit for a Tweet?",
     correct_answer: "140",
-    incorrect_answers: ["120", "160", "100"],
+    incorrect_answers: ["120", "160", "100"]
   },
   {
     category: "Science: Computers",
@@ -70,16 +81,17 @@ const questions = [
     difficulty: "easy",
     question: "Linux was first created as an alternative to Windows XP.",
     correct_answer: "False",
-    incorrect_answers: ["True"],
+    incorrect_answers: ["True"]
   },
   {
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question: "Which programming language shares its name with an island in Indonesia?",
+    question:
+      "Which programming language shares its name with an island in Indonesia?",
     correct_answer: "Java",
-    incorrect_answers: ["Python", "C", "Jakarta"],
-  },
+    incorrect_answers: ["Python", "C", "Jakarta"]
+  }
 ];
 
 let countCorrectAnswers = 0;
@@ -111,7 +123,9 @@ console.log("ciao");
 function CorrectOrWrongQuestion(userAnswer, ind) {
   clearTimeout(timer);
 
-  if (userAnswer.toLowerCase() === questions[ind].correct_answer.toLowerCase()) {
+  if (
+    userAnswer.toLowerCase() === questions[ind].correct_answer.toLowerCase()
+  ) {
     countCorrectAnswers++;
     console.log("corrette: ", countCorrectAnswers);
   } else {
@@ -153,33 +167,33 @@ function selectOnlyOne() {
   });
 }
 
-function gestionOfTrueFalse() {
-  const falseInput = document.getElementById("false-input");
-  const trueInput = document.getElementById("true-input");
-  const button = document.getElementById("button-confirm-question");
-  const arrayInputElements = [];
-  button.disabled = arrayInputElements.length !== 1;
-  trueInput.addEventListener("click", (e) => {
-    falseInput.checked = false;
-    trueInput.checked = true;
-    arrayInputElements.push(e.target.value);
-    remotionSelectedAnswer();
-    e.target.classList.add("selected-answer");
-    button.disabled = false;
-  });
-  falseInput.addEventListener("click", (e) => {
-    trueInput.checked = false;
-    falseInput.checked = true;
-    remotionSelectedAnswer();
-    e.target.classList.add("selected-answer");
-    arrayInputElements.push(e.target.value);
-    button.disabled = false;
-  });
-}
+// function gestionOfTrueFalse() {
+//   const falseInput = document.getElementById("false-input");
+//   const trueInput = document.getElementById("true-input");
+//   const button = document.getElementById("button-confirm-question");
+//   const arrayInputElements = [];
+//   button.disabled = arrayInputElements.length !== 1;
+//   trueInput.addEventListener("click", (e) => {
+//     falseInput.checked = false;
+//     trueInput.checked = true;
+//     arrayInputElements.push(e.target.value);
+//     remotionSelectedAnswer();
+//     e.target.classList.add("selected-answer");
+//     button.disabled = false;
+//   });
+//   falseInput.addEventListener("click", (e) => {
+//     trueInput.checked = false;
+//     falseInput.checked = true;
+//     remotionSelectedAnswer();
+//     e.target.classList.add("selected-answer");
+//     arrayInputElements.push(e.target.value);
+//     button.disabled = false;
+//   });
+// }
 
-const gestionOfButton = () => {
+const gestionOfButton = (verify) => {
   const selectedAnswer = document.querySelector(".selected-answer");
-  if (selectedAnswer) {
+  if (selectedAnswer && verify) {
     CorrectOrWrongQuestion(selectedAnswer.value, IndexOfquestionsArray);
   }
   const timerDiv = document.querySelector(".countdown");
@@ -209,14 +223,14 @@ const gestionOfButton = () => {
     const h1ForQuestion = document.getElementById("h1-second-page");
     h1ForQuestion.innerText = questions[IndexOfquestionsArray].question;
     if (
-      questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "false" ||
+      questions[IndexOfquestionsArray].correct_answer.toLowerCase() !==
+        "false" ||
       questions[IndexOfquestionsArray].correct_answer.toLowerCase() !== "true"
     ) {
       FourAnswers(IndexOfquestionsArray);
       timeForAnswer();
     } else {
       trueFalseAnswers(IndexOfquestionsArray);
-      gestionOfTrueFalse(IndexOfquestionsArray);
       timeForAnswer();
     }
   }
@@ -258,34 +272,71 @@ const lastPage = () => {
   });
 };
 
-// const trueFalseAnswers = (ind) => {
-//   const arrayAnswers = questions[ind].incorrect_answers.concat(
-//     questions[ind].correct_answer
-//   );
-//   for (let i = 0; i < 2; i++) {}
-// };
+const trueFalseAnswers = () => {
+  const previousDivs = document.getElementsByClassName(
+    "contain-answers-true-false"
+  );
+  Array.from(previousDivs).forEach((div) => div.remove());
+  const mainOfPage = document.getElementById("main-second-page");
+  const divAnswers = document.createElement("div");
+  mainOfPage.appendChild(divAnswers);
+  divAnswers.classList.add("div-true-false");
+  for (let i = 0; i < 2; i++) {
+    const divForAnyAnswers = document.createElement("div");
+    divAnswers.appendChild(divForAnyAnswers);
+    divForAnyAnswers.classList.add("contain-answers-true-false");
+    const radioInput = document.createElement("input");
+    const label = document.createElement("label");
+    radioInput.type = "radio";
+    radioInput.classList.add("true-false-input");
+    divForAnyAnswers.appendChild(radioInput);
+    divForAnyAnswers.appendChild(label);
+  }
+  const bothRadioInput = document.getElementsByClassName("true-false-input");
+  bothRadioInput[0].setAttribute("id", "true-input");
+  bothRadioInput[1].setAttribute("id", "false-input");
+  bothRadioInput[0].value = "true";
+  bothRadioInput[1].value = "false";
+  const bothLabel = document.getElementsByTagName("label");
+  Array.from(bothLabel).forEach((label) =>
+    label.classList.add("label-true-false")
+  );
+  bothLabel[0].setAttribute("for", "true-input");
+  bothLabel[1].setAttribute("for", "false-input");
+  bothLabel[0].innerText = "True";
+  bothLabel[1].innerText = "False";
+  console.dir(bothRadioInput[1]);
+  creationOfButton();
+};
 
 const FourAnswers = (ind) => {
-  const arrayAnswers = questions[ind].incorrect_answers.concat(questions[ind].correct_answer);
+  const arrayAnswers = questions[ind].incorrect_answers.concat(
+    questions[ind].correct_answer
+  );
   // console.log(arrayAnswers);
   const numbersInArray = FourRandomNumbers();
+  const mainOfPage = document.getElementById("main-second-page");
+  if (IndexOfquestionsArray > 0) {
+    divAnswers = document.getElementsByClassName("div-four-answers");
+    divAnswersTrueFalse = document.getElementsByClassName("div-true-false");
+    Array.from(divAnswers).forEach((div) => div.remove());
+    Array.from(divAnswersTrueFalse).forEach((div) => div.remove());
+    divAnswers = document.createElement("div");
+  } else {
+    divAnswers = document.createElement("div");
+  }
+  mainOfPage.appendChild(divAnswers);
+  divAnswers.classList.add("div-four-answers");
   for (let i = 0; i < 4; i++) {
     const divForAnyanswer = document.createElement("div");
-    const mainOfPage = document.getElementById("main-second-page");
     // console.log(divForAnyanswer);
-    mainOfPage.appendChild(divForAnyanswer);
     divForAnyanswer.classList.add("contain-answers");
-    const mainOfpage = document.getElementById("main-second-page");
-    mainOfpage.appendChild(divForAnyanswer);
+    divAnswers.appendChild(divForAnyanswer);
     const inputButtonForAnyAnswer = document.createElement("input");
     inputButtonForAnyAnswer.classList.add("answers");
     inputButtonForAnyAnswer.type = "button";
     divForAnyanswer.appendChild(inputButtonForAnyAnswer);
     inputButtonForAnyAnswer.value = arrayAnswers[numbersInArray[i]];
-    // console.dir(inputButtonForAnyAnswer);
-    inputButtonForAnyAnswer.addEventListener("click", (e) => {
-      // e.target.classList.add("selected-answer");
-    });
   }
   creationOfButton();
   selectOnlyOne();
