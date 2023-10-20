@@ -79,7 +79,9 @@ ul > li {
   font-weight: 700;
   font-size: 1rem;
 }
-
+#first-checkbox {
+  border-radius: 50%;
+}
 .first-button {
   margin-left: 10rem;
   width: 13rem;
@@ -95,6 +97,17 @@ ul > li {
 footer > input {
   background-color: transparent;
   border: none;
+}
+#first-checkbox {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  vertical-align: bottom;
+  color: black;
+  background-color: transparent;
+  margin-bottom: 25px;
+
+  border: 2px solid black;
 }
 
 #main-lastpage {
