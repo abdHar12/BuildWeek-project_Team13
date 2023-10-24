@@ -128,7 +128,7 @@ function creationDivFeedback(result) {
   p.style.display = "inline-block";
   p.style.fontFamily = "Inter";
   p.style.fontWeight = "bold";
-
+  divForImage.style.position = "absolute";
   setTimeout(function () {
     p.remove();
     img.remove();
